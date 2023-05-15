@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PickUpPool : MonoBehaviour
@@ -14,19 +13,33 @@ public class PickUpPool : MonoBehaviour
     {
         for (int i = 0; i < poolSize; i++)
         {
-            PickUp pickUp = Instantiate(_prefab);
-            pickUp.gameObject.SetActive(false);
-            _pool.Add(pickUp);
+            CreatePickUp();
         }
     }
 
     public PickUp GetPickUp()
     {
-        
+        if (TryGetPickUp(out PickUp pickUp))
+        {
+            return pickUp;
+        }
+        else
+        {
+            CreatePickUp();
+            return _pool.Last();
+        }
     }
 
     private bool TryGetPickUp(out PickUp pickUp)
     {
-        PickUp pickUpToGet = _pool.FirstOrDefault(p => p.gameObject.activeSelf == false);
+        pickUp = _pool.FirstOrDefault(p => p.gameObject.activeSelf == false);
+        return pickUp != null;
+    }
+
+    private void CreatePickUp()
+    {
+        PickUp pickUp = Instantiate(_prefab);
+        pickUp.gameObject.SetActive(false);
+        _pool.Add(pickUp);
     }
 }
