@@ -17,7 +17,7 @@ public class Game : MonoBehaviour
     {
         PathCreator spline = _splineGetter.GetRandomSpline();
         PathCreator finishSpline = _splineGetter.FinishSpline;
-        _player.Init(spline, finishSpline);
+        _player.Initialize(spline);
         _pickUpSpawner.Instantiate();
         _boatSpawner.Instantiate();
     }

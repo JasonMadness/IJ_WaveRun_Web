@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using PathCreation;
 using UnityEngine;
 
@@ -12,16 +10,16 @@ public class SplineFollower : MonoBehaviour
     [SerializeField] private float _endingOffset = 0.1f;
 
     private PathCreator _spline;
-    private PathCreator _finishSpline;
     private Vector3 _horizontalPosition = Vector3.zero;
     private float _distanceTravelled;
     private float _currentDistance;
     private float _maxDistance;
 
-    public void Init(PathCreator spline, PathCreator finishSpline)
+    public event Action SplineEnded;
+
+    public void Initialize(PathCreator spline)
     {
         _spline = spline;
-        _finishSpline = finishSpline;
         _distanceTravelled = 0.0f;
         _maxDistance = _spline.path.GetPointAtDistance(_spline.path.length - _endingOffset).z;
         SetTransform();
@@ -29,13 +27,17 @@ public class SplineFollower : MonoBehaviour
 
     private void Move()
     {
+        _distanceTravelled += _speed * Time.deltaTime;
         _currentDistance = _spline.path.GetPointAtDistance(_distanceTravelled).z;
 
         if (_currentDistance < _maxDistance)
         {
-            _distanceTravelled += _speed * Time.deltaTime;
             MoveHorizontal();
             SetTransform();
+        }
+        else
+        {
+            SplineEnded?.Invoke();
         }
     }
 
@@ -66,6 +68,9 @@ public class SplineFollower : MonoBehaviour
 
     private void Update()
     {
-        Move();
+        if (_currentDistance < _maxDistance)
+        {
+            Move();
+        }
     }
 }
