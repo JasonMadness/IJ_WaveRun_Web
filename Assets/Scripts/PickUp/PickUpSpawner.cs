@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PickUpSpawner : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class PickUpSpawner : MonoBehaviour
     [SerializeField] private float _upOffset;
 
     private Vector3 _currentOffset;
+
+    public event Action<PickUp> PickUpSpawned;
 
     private void Start()
     {
@@ -31,6 +35,7 @@ public class PickUpSpawner : MonoBehaviour
                 pickUp.transform.SetParent(point);
                 LandPosition(pickUp);
                 pickUp.gameObject.SetActive(true);
+                PickUpSpawned?.Invoke(pickUp);
             }
         }
     }

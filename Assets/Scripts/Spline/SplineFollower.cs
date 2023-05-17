@@ -38,7 +38,8 @@ public class SplineFollower : MonoBehaviour
         else
         {
             // костыль. переделать.
-            this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            this.GetComponent<Rigidbody>().isKinematic = true;
+            SetTransform();
             SplineEnded?.Invoke();
         }
     }
