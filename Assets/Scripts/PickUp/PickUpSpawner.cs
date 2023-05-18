@@ -49,6 +49,9 @@ public class PickUpSpawner : MonoBehaviour
 
     private Vector3 GetNewOffset()
     {
+        if (_sideOffset == Vector3.zero)
+            throw new ArgumentException("Side offset cannot be Vector3.zero, infinity loop error");
+
         Vector3[] posibleOffsets = {-_sideOffset, Vector3.zero, _sideOffset};
         Vector3 offset = posibleOffsets[Random.Range(0, posibleOffsets.Length)];
 
