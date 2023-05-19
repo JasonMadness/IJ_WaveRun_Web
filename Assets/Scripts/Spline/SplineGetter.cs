@@ -8,6 +8,7 @@ public class SplineGetter : MonoBehaviour
     [SerializeField] private PathCreator _finishSpline;
 
     public PathCreator FinishSpline => _finishSpline;
+    public Vector3 FinishSplineStart => _finishSpline.path.GetPoint(1);
 
     private PathCreator _activeSpline = null;
     private int _activeSplineIndex = -1;
