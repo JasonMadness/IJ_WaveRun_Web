@@ -8,6 +8,8 @@ public class Game : MonoBehaviour
     [SerializeField] private SplineGetter _splineGetter;
     [SerializeField] private PickUpSpawner _pickUpSpawner;
     [SerializeField] private BoatSpawner _boatSpawner;
+    [SerializeField] private CameraSwitcher _cameraSwitcher;
+    [SerializeField] private Ending _ending;
 
     private void OnEnable()
     {
@@ -23,12 +25,12 @@ public class Game : MonoBehaviour
     {
         InitializeSplines();
         InitializeSpawners();
+        _splineFollower.AllowMovement();
     }
 
     private void InitializeSplines()
     {
         PathCreator spline = _splineGetter.GetRandomSpline();
-        PathCreator finishSpline = _splineGetter.FinishSpline;
         _splineFollower.Initialize(spline);
     }
 
@@ -46,6 +48,6 @@ public class Game : MonoBehaviour
 
     private void BeginFinishCutscene()
     {
-        Debug.Log("Player finished");
+        _ending.Initialize();
     }
 }

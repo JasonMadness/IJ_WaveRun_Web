@@ -1,5 +1,6 @@
 using PathCreation;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class SplineFollower : MonoBehaviour
@@ -7,8 +8,11 @@ public class SplineFollower : MonoBehaviour
     [SerializeField] private float _speed = 1.0f;
     [SerializeField] private float _horizontalSpeed = 0.5f;
     [SerializeField] private float _horizontalBounding = 0.25f;
+    [SerializeField] private float _startDelay = 3.0f;
+    [SerializeField] private float _startOffsetForTestingOnly = 0.01f;
     [SerializeField] private float _endingOffset = 0.1f;
 
+    private bool _canMove = false;
     private PathCreator _spline;
     private Vector3 _horizontalPosition = Vector3.zero;
     private float _distanceTravelled;
@@ -20,9 +24,29 @@ public class SplineFollower : MonoBehaviour
     public void Initialize(PathCreator spline)
     {
         _spline = spline;
-        _distanceTravelled = 0.0f;
+        _distanceTravelled = 0.0f + _startOffsetForTestingOnly;
         _maxDistance = _spline.path.GetPointAtDistance(_spline.path.length - _endingOffset).z;
+        this.GetComponent<Rigidbody>().isKinematic = true;
+    }
+
+    public void AllowMovement()
+    {
         SetTransform();
+        StartCoroutine(Allow(_startDelay));
+    }
+
+    private IEnumerator Allow(float delay)
+    {
+        WaitForSeconds step = new WaitForSeconds(Time.fixedDeltaTime);
+
+        while (delay > 0)
+        {
+            delay -= Time.fixedDeltaTime;
+            yield return step;
+        }
+
+        this.GetComponent<Rigidbody>().isKinematic = false;
+        _canMove = true;
     }
 
     private void Move()
@@ -38,8 +62,10 @@ public class SplineFollower : MonoBehaviour
         else
         {
             // костыль. переделать.
+            _canMove = false;
             this.GetComponent<Rigidbody>().isKinematic = true;
             SetTransform();
+            //this.GetComponent<Rigidbody>().isKinematic = false;
             SplineEnded?.Invoke();
         }
     }
@@ -71,7 +97,7 @@ public class SplineFollower : MonoBehaviour
 
     private void Update()
     {
-        if (_currentDistance < _maxDistance)
+        if (_canMove)
         {
             Move();
         }
