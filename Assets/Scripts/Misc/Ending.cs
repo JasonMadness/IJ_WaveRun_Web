@@ -1,3 +1,4 @@
+using PathCreation;
 using System.Collections;
 using UnityEngine;
 
@@ -40,6 +41,11 @@ public class Ending : MonoBehaviour
         {
             _player.transform.position = Vector3.Lerp(_startPosition.position, _endPosition.position, _interpolateValue);
             _interpolateValue += Time.deltaTime * _speed;
+
+            if (Mathf.Approximately(_player.transform.position.z, _endPosition.position.z))
+            {
+                _canMove = false;
+            }
         }
     }
 }
