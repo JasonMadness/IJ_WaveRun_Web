@@ -65,7 +65,7 @@ public class SplineFollower : MonoBehaviour
             _canMove = false;
             this.GetComponent<Rigidbody>().isKinematic = true;
             SetTransform();
-            this.GetComponent<Rigidbody>().isKinematic = false;
+            //this.GetComponent<Rigidbody>().isKinematic = false;
             SplineEnded?.Invoke();
         }
     }

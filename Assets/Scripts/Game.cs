@@ -9,6 +9,7 @@ public class Game : MonoBehaviour
     [SerializeField] private PickUpSpawner _pickUpSpawner;
     [SerializeField] private BoatSpawner _boatSpawner;
     [SerializeField] private CameraSwitcher _cameraSwitcher;
+    [SerializeField] private Ending _ending;
 
     private void OnEnable()
     {
@@ -47,9 +48,6 @@ public class Game : MonoBehaviour
 
     private void BeginFinishCutscene()
     {
-        _cameraSwitcher.SwitchPriorities();
-        _splineFollower.Initialize(_splineGetter.FinishSpline);
-        Vector3 temp = _splineGetter.FinishSplineStart;
-        _player.MoveToPosition(temp);
+        _ending.Initialize();
     }
 }
