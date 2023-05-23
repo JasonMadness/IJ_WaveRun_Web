@@ -1,14 +1,14 @@
-using PathCreation;
 using System.Collections;
 using UnityEngine;
 
 public class Ending : MonoBehaviour
 {
     [SerializeField] private CameraSwitcher _cameraSwitcher;
-    [SerializeField] private Transform _startPosition;
-    [SerializeField] private Transform _endPosition;
+    [SerializeField] private Transform _start;
+    [SerializeField] private Transform _end;
     [SerializeField] private Player _player;
     [SerializeField] private float _speed;
+    [SerializeField] private float _delayBeforeCutscene = 2.0f;
 
     private float _interpolateValue = 0;
     private bool _canMove = false;
@@ -16,22 +16,23 @@ public class Ending : MonoBehaviour
     public void Initialize()
     {
         _cameraSwitcher.SwitchPriorities();
-        _player.MoveToPosition(_startPosition.position);
-        StartCoroutine(Countdown());
+        _player.MoveToPosition(_start.position);
+        _player.FinishedMoving += OnPlayerFinishedMoving;
     }
 
-    private IEnumerator Countdown()
+    private void OnDisable()
     {
-        float t = 2;
+        _player.FinishedMoving -= OnPlayerFinishedMoving;
+    }
 
-        while (t > 0)
-        {
-            t -= Time.deltaTime;
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
+    private void OnPlayerFinishedMoving()
+    {
+        StartCoroutine(BeginCutscene());
+    }
 
-        _player.GetComponent<Rigidbody>().isKinematic = false;
-
+    private IEnumerator BeginCutscene()
+    {
+        yield return new WaitForSeconds(_delayBeforeCutscene);
         _canMove = true;
     }
 
@@ -39,10 +40,10 @@ public class Ending : MonoBehaviour
     {
         if (_canMove)
         {
-            _player.transform.position = Vector3.Lerp(_startPosition.position, _endPosition.position, _interpolateValue);
+            _player.transform.position = Vector3.Lerp(_start.position, _end.position, _interpolateValue);
             _interpolateValue += Time.deltaTime * _speed;
 
-            if (Mathf.Approximately(_player.transform.position.z, _endPosition.position.z))
+            if (Mathf.Approximately(_player.transform.position.z, _end.position.z))
             {
                 _canMove = false;
             }

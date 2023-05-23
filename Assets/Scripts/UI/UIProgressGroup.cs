@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,7 +13,17 @@ public class UIProgressGroup : MonoBehaviour
     [SerializeField] private List<Color> _colors;
 
     private int _index = 0;
-    private int _maxIndex; 
+    private int _maxIndex;
+
+    public void Reveal()
+    {
+        GetComponent<Animator>().Play("Reveal");
+    }
+
+    public void Hide()
+    {
+        GetComponent<Animator>().Play("Hide");
+    }
 
     private void Start()
     {
@@ -46,6 +57,7 @@ public class UIProgressGroup : MonoBehaviour
     public void Increase(float value)
     {
         _bar.value += value;
+        _bar.value = MathF.Round(_bar.value, 4);
 
         if (_bar.value > 1)
             _bar.value = 1;
@@ -53,7 +65,7 @@ public class UIProgressGroup : MonoBehaviour
         float stage = 1.0f / (_maxIndex + 1);
         float currentStage = stage * (_index + 1);
 
-        if (_bar.value > currentStage)
+        if (_bar.value >= currentStage)
         {
             IncreaseIndex();
             UpdateUI();

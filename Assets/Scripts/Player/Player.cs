@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerScaler _scaler;
     [SerializeField] private float _speed;
+
+    public event Action FinishedMoving; 
 
     public void OnPickedUp(PickUp pickUp)
     {
@@ -14,10 +17,10 @@ public class Player : MonoBehaviour
 
     public void MoveToPosition(Vector3 targetPosition)
     {
-        StartCoroutine(MoveSmootly(transform.position, targetPosition));
+        StartCoroutine(MoveSmoothly(transform.position, targetPosition));
     }
 
-    private IEnumerator MoveSmootly(Vector3 from, Vector3 to)
+    private IEnumerator MoveSmoothly(Vector3 from, Vector3 to)
     {
         GetComponent<Rigidbody>().isKinematic = true;
         float interpolateValue = 0;
@@ -26,14 +29,11 @@ public class Player : MonoBehaviour
         while (interpolateValue < 1)
         {
             transform.position = Vector3.Lerp(from, to, interpolateValue);
-            //transform.position = new Vector3
-            //    (Mathf.Lerp(from.x, to.x, interpolateValue),
-            //    transform.position.y, 
-            //    Mathf.Lerp(from.z, to.z, interpolateValue));
             interpolateValue += Time.deltaTime;
             yield return delay;
         }
 
         GetComponent<Rigidbody>().isKinematic = false;
+        FinishedMoving?.Invoke();
     }
 }

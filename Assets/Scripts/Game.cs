@@ -10,23 +10,25 @@ public class Game : MonoBehaviour
     [SerializeField] private BoatSpawner _boatSpawner;
     [SerializeField] private CameraSwitcher _cameraSwitcher;
     [SerializeField] private UI _ui;
+    [SerializeField] private Timer _startingTimer;
     [SerializeField] private Ending _ending;
 
     private void OnEnable()
     {
         _splineFollower.SplineEnded += BeginFinishCutscene;
+        _startingTimer.Stopped += OnStartingTimerStopped;
     }
 
     private void OnDisable()
     {
         _splineFollower.SplineEnded -= BeginFinishCutscene;
+        _startingTimer.Stopped -= OnStartingTimerStopped;
     }
 
     private void Start()
     {
         InitializeSplines();
         InitializeSpawners();
-        _splineFollower.AllowMovement();
     }
 
     private void InitializeSplines()
@@ -48,8 +50,15 @@ public class Game : MonoBehaviour
         pickUp.PickedUp += _ui.OnPickedUp;
     }
 
+    private void OnStartingTimerStopped()
+    {
+        _splineFollower.AllowMovement();
+        _ui.ChangeProgressBarStatus(true);
+    }
+    
     private void BeginFinishCutscene()
     {
         _ending.Initialize();
+        _ui.ChangeProgressBarStatus(false);
     }
 }

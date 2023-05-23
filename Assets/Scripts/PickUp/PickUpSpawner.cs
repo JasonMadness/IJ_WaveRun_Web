@@ -7,6 +7,7 @@ public class PickUpSpawner : MonoBehaviour
 {
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
     [SerializeField] private PickUpPool _pool;
+    [SerializeField] private Transform _particlesContainer;
     [SerializeField] private int _count;
     [SerializeField] private float _step;
     [SerializeField] private Vector3 _sideOffset;
@@ -36,7 +37,7 @@ public class PickUpSpawner : MonoBehaviour
                 pickUp.transform.position = point.transform.position + _step * i * Vector3.forward + _currentOffset;
                 pickUp.transform.SetParent(point);
                 LandPosition(pickUp);
-                pickUp.Initialize(_pickUpValue);
+                pickUp.Initialize(_pickUpValue, _particlesContainer);
                 pickUp.gameObject.SetActive(true);
                 PickUpSpawned?.Invoke(pickUp);
             }

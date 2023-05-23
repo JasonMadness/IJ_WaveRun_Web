@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
@@ -9,5 +8,13 @@ public class UI : MonoBehaviour
     {
         _progressgroup.Increase(pickUp.Value);
         pickUp.PickedUp -= OnPickedUp;
+    }
+
+    public void ChangeProgressBarStatus(bool status)
+    {
+        if (status)
+            _progressgroup.Reveal();
+        else
+            _progressgroup.Hide();
     }
 }

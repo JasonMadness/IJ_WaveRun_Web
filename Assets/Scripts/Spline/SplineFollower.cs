@@ -1,6 +1,5 @@
 using PathCreation;
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class SplineFollower : MonoBehaviour
@@ -8,7 +7,6 @@ public class SplineFollower : MonoBehaviour
     [SerializeField] private float _speed = 1.0f;
     [SerializeField] private float _horizontalSpeed = 0.5f;
     [SerializeField] private float _horizontalBounding = 0.25f;
-    [SerializeField] private float _startDelay = 3.0f;
     [SerializeField] private float _startOffsetForTestingOnly = 0.01f;
     [SerializeField] private float _endingOffset = 0.1f;
 
@@ -32,19 +30,6 @@ public class SplineFollower : MonoBehaviour
     public void AllowMovement()
     {
         SetTransform();
-        StartCoroutine(Allow(_startDelay));
-    }
-
-    private IEnumerator Allow(float delay)
-    {
-        WaitForSeconds step = new WaitForSeconds(Time.fixedDeltaTime);
-
-        while (delay > 0)
-        {
-            delay -= Time.fixedDeltaTime;
-            yield return step;
-        }
-
         this.GetComponent<Rigidbody>().isKinematic = false;
         _canMove = true;
     }
@@ -61,11 +46,9 @@ public class SplineFollower : MonoBehaviour
         }
         else
         {
-            // костыль. переделать.
             _canMove = false;
             this.GetComponent<Rigidbody>().isKinematic = true;
             SetTransform();
-            //this.GetComponent<Rigidbody>().isKinematic = false;
             SplineEnded?.Invoke();
         }
     }
