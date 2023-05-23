@@ -13,12 +13,14 @@ public class PickUpSpawner : MonoBehaviour
     [SerializeField] private float _upOffset;
 
     private Vector3 _currentOffset;
+    private float _pickUpValue;
 
     public event Action<PickUp> PickUpSpawned;
 
     private void Start()
     {
         int pickUpsCount = _spawnPoints.Count * _count;
+        _pickUpValue = 1.0f / pickUpsCount;
         _pool.Initialize(pickUpsCount);
     }
 
@@ -34,6 +36,7 @@ public class PickUpSpawner : MonoBehaviour
                 pickUp.transform.position = point.transform.position + _step * i * Vector3.forward + _currentOffset;
                 pickUp.transform.SetParent(point);
                 LandPosition(pickUp);
+                pickUp.Initialize(_pickUpValue);
                 pickUp.gameObject.SetActive(true);
                 PickUpSpawned?.Invoke(pickUp);
             }

@@ -9,6 +9,7 @@ public class Game : MonoBehaviour
     [SerializeField] private PickUpSpawner _pickUpSpawner;
     [SerializeField] private BoatSpawner _boatSpawner;
     [SerializeField] private CameraSwitcher _cameraSwitcher;
+    [SerializeField] private UI _ui;
     [SerializeField] private Ending _ending;
 
     private void OnEnable()
@@ -44,6 +45,7 @@ public class Game : MonoBehaviour
     private void OnPickUpSpawned(PickUp pickUp)
     {
         pickUp.PickedUp += _player.OnPickedUp;
+        pickUp.PickedUp += _ui.OnPickedUp;
     }
 
     private void BeginFinishCutscene()

@@ -5,7 +5,16 @@ public class PickUp : MonoBehaviour
 {
     [SerializeField] private ParticleSystem[] _splashes;
 
+    private float _value;
+
+    public float Value => _value;
+
     public event Action<PickUp> PickedUp;
+
+    public void Initialize(float value)
+    {
+        _value = value;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
