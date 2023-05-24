@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class Ending : MonoBehaviour
 
     private float _interpolateValue = 0;
     private bool _canMove = false;
+
+    public event Action GameEnded;
 
     public void Initialize()
     {
@@ -46,6 +49,7 @@ public class Ending : MonoBehaviour
             if (Mathf.Approximately(_player.transform.position.z, _end.position.z))
             {
                 _canMove = false;
+                GameEnded?.Invoke();
             }
         }
     }

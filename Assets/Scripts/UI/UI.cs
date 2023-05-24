@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
+    [SerializeField] private MainMenu _mainMenu;
     [SerializeField] private UIProgressGroup _progressgroup;
 
     public void OnPickedUp(PickUp pickUp)

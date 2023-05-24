@@ -25,10 +25,11 @@ public class Game : MonoBehaviour
         _startingTimer.Stopped -= OnStartingTimerStopped;
     }
 
-    private void Start()
+    public void StartNewGame()
     {
         InitializeSplines();
         InitializeSpawners();
+        _startingTimer.Initialize();
     }
 
     private void InitializeSplines()

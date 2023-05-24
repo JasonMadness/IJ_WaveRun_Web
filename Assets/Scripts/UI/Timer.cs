@@ -7,9 +7,10 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private List<Image> _images;
     [SerializeField] private Animation _animation;
-    [SerializeField] private int _value = 4;
+    [SerializeField] private int _timeBeforeStart = 4;
 
     private float _interval = 1.0f;
+    private int _timeLeft;
     private float _timer;
     private int _maxIndex;
 
@@ -22,9 +23,9 @@ public class Timer : MonoBehaviour
         _timer = _interval;
     }
 
-    public void Initialize(int delay)
+    public void Initialize()
     {
-        _value = delay;
+        _timeLeft = _timeBeforeStart;
     }
 
     private void ShowImage(int index)
@@ -43,9 +44,9 @@ public class Timer : MonoBehaviour
 
     private void DecreaseTimer()
     {
-        _value--;
+        _timeLeft--;
 
-        if (_value == 0)
+        if (_timeLeft == 0)
         {
             Stopped?.Invoke();
         }
@@ -53,7 +54,7 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
-        if (_value > 0)
+        if (_timeLeft > 0)
         {
             _timer -= Time.deltaTime;
 
@@ -61,7 +62,7 @@ public class Timer : MonoBehaviour
             {
                 DeactivateAllImages();
                 DecreaseTimer();
-                ShowImage(_value);
+                ShowImage(_timeLeft);
                 _animation.Play();
                 _timer = _interval;
             }
