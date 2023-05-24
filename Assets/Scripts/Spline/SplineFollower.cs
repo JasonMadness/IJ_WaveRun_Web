@@ -2,6 +2,7 @@ using PathCreation;
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class SplineFollower : MonoBehaviour
 {
     [SerializeField] private float _speed = 1.0f;
@@ -10,27 +11,34 @@ public class SplineFollower : MonoBehaviour
     [SerializeField] private float _startOffsetForTestingOnly = 0.01f;
     [SerializeField] private float _endingOffset = 0.1f;
 
-    private bool _canMove = false;
+    private Rigidbody _rigidbody;
     private PathCreator _spline;
     private Vector3 _horizontalPosition = Vector3.zero;
+    private bool _canMove = false;
+    private float _horizontalInput;
     private float _distanceTravelled;
     private float _currentDistance;
     private float _maxDistance;
 
-    public event Action SplineEnded;
+    public event Action Finished;
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
 
     public void Initialize(PathCreator spline)
     {
         _spline = spline;
-        _distanceTravelled = 0.0f + _startOffsetForTestingOnly;
+        _distanceTravelled += _startOffsetForTestingOnly;
         _maxDistance = _spline.path.GetPointAtDistance(_spline.path.length - _endingOffset).z;
-        this.GetComponent<Rigidbody>().isKinematic = true;
+        _rigidbody.isKinematic = true;
+        SetTransform();
     }
 
     public void AllowMovement()
     {
-        SetTransform();
-        this.GetComponent<Rigidbody>().isKinematic = false;
+        _rigidbody.isKinematic = false;
         _canMove = true;
     }
 
@@ -41,36 +49,18 @@ public class SplineFollower : MonoBehaviour
 
         if (_currentDistance < _maxDistance)
         {
-            MoveHorizontal();
-            SetTransform();
+            _horizontalInput += Input.GetAxisRaw("Horizontal") * _horizontalSpeed * Time.deltaTime;
+            _horizontalInput = Mathf.Clamp(_horizontalInput, -_horizontalBounding, _horizontalBounding);
+            _horizontalPosition = Vector3.right * _horizontalInput;
         }
         else
         {
             _canMove = false;
-            this.GetComponent<Rigidbody>().isKinematic = true;
-            SetTransform();
-            SplineEnded?.Invoke();
+            _rigidbody.isKinematic = true;
+            Finished?.Invoke();
         }
-    }
 
-    private void MoveHorizontal()
-    {
-        if (Input.GetKey(KeyCode.A))
-            _horizontalPosition += _horizontalSpeed * Time.deltaTime * Vector3.left;
-
-        if (Input.GetKey(KeyCode.D))
-            _horizontalPosition += _horizontalSpeed * Time.deltaTime * Vector3.right;
-
-        ClampHorizontalPosition();
-    }
-
-    private void ClampHorizontalPosition()
-    {
-        if (_horizontalPosition.x > _horizontalBounding)
-            _horizontalPosition = new Vector3(_horizontalBounding, 0.0f, 0.0f);
-
-        if (_horizontalPosition.x < -_horizontalBounding)
-            _horizontalPosition = new Vector3(-_horizontalBounding, 0.0f, 0.0f);
+        SetTransform();
     }
 
     private void SetTransform()

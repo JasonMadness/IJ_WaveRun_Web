@@ -18,17 +18,17 @@ public class Ending : MonoBehaviour
 
     public void Initialize()
     {
-        _cameraSwitcher.SwitchPriorities();
-        _player.MoveToPosition(_start.position);
-        _player.FinishedMoving += OnPlayerFinishedMoving;
+        _cameraSwitcher.SetEndingPriorities();
+        _player.MoveToEndingPosition(_start.position);
+        _player.LevelEnded += OnPlayerEndLevel;
     }
 
     private void OnDisable()
     {
-        _player.FinishedMoving -= OnPlayerFinishedMoving;
+        _player.LevelEnded -= OnPlayerEndLevel;
     }
 
-    private void OnPlayerFinishedMoving()
+    private void OnPlayerEndLevel()
     {
         StartCoroutine(BeginCutscene());
     }

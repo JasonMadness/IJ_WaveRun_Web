@@ -38,6 +38,7 @@ public class PickUpPool : MonoBehaviour
     private void CreatePickUp()
     {
         PickUp pickUp = Instantiate(_prefab);
+        pickUp.transform.SetParent(transform);
         pickUp.gameObject.SetActive(false);
         _pool.Add(pickUp);
     }

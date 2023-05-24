@@ -1,9 +1,16 @@
+using System;
 using UnityEngine;
 
 public class UI : MonoBehaviour
 {
     [SerializeField] private MainMenu _mainMenu;
     [SerializeField] private UIProgressGroup _progressgroup;
+    [SerializeField] private EndScreen _endScreen;
+
+    internal void Initialize()
+    {
+        _mainMenu.gameObject.SetActive(true);
+    }
 
     public void OnPickedUp(PickUp pickUp)
     {
@@ -17,5 +24,10 @@ public class UI : MonoBehaviour
             _progressgroup.Reveal();
         else
             _progressgroup.Hide();
+    }
+
+    public void OnGameEnded()
+    {
+        _endScreen.gameObject.SetActive(true);
     }
 }

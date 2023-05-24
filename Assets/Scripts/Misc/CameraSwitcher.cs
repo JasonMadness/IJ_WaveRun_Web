@@ -9,27 +9,15 @@ public class CameraSwitcher : MonoBehaviour
     private int _lowPriority = 5;
     private int _highPriority = 10;
 
-    private void Start()
-    {
-        SetStartingPriorities();
-    }
-
-    private void SetStartingPriorities()
+    public void SetStartingPriorities()
     {
         _followingCamera.Priority = _highPriority;
         _endingCamera.Priority = _lowPriority;
     }
 
-    public void SwitchPriorities()
+    public void SetEndingPriorities()
     {
-        if (_followingCamera.Priority > _endingCamera.Priority)
-        {
-            _followingCamera.Priority = _lowPriority;
-            _endingCamera.Priority = _highPriority;
-        }
-        else
-        {
-            SetStartingPriorities();
-        }
+        _followingCamera.Priority = _lowPriority;
+        _endingCamera.Priority = _highPriority;
     }
 }
