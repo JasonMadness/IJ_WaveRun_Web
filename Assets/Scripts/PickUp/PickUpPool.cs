@@ -5,7 +5,7 @@ using UnityEngine;
 public class PickUpPool : MonoBehaviour
 {
     [SerializeField] private PickUp _prefab;
-    
+
     private List<PickUp> _pool = new List<PickUp>();
 
     public void Initialize(int poolSize)
@@ -27,6 +27,22 @@ public class PickUpPool : MonoBehaviour
             CreatePickUp();
             return _pool.Last();
         }
+    }
+
+    public List<PickUp> ReturnAllPickUps()
+    {
+        List<PickUp> pickUps = new List<PickUp>();
+
+        foreach (PickUp pickUp in _pool)
+        {
+            if (pickUp.gameObject.activeSelf)
+            {
+                pickUps.Add(pickUp);
+                pickUp.gameObject.SetActive(false);
+            }
+        }
+
+        return pickUps;
     }
 
     private bool TryGetPickUp(out PickUp pickUp)

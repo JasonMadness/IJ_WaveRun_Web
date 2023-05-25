@@ -1,4 +1,5 @@
 using PathCreation;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -21,6 +22,7 @@ public class Game : MonoBehaviour
     private void OnEnable()
     {
         _player.SplineEnded += BeginFinishCutscene;
+        _pickUpSpawner.Deactivated += OnPickUpsDeactivated;
         _startingTimer.Stopped += OnStartingTimerStopped;
         _ending.GameEnded += _ui.OnGameEnded;
     }
@@ -28,27 +30,40 @@ public class Game : MonoBehaviour
     private void OnDisable()
     {
         _player.SplineEnded -= BeginFinishCutscene;
+        _pickUpSpawner.Deactivated -= OnPickUpsDeactivated;
         _startingTimer.Stopped -= OnStartingTimerStopped;
         _ending.GameEnded -= _ui.OnGameEnded;
     }
 
     public void StartNewGame()
     {
-        InitializeSplines();
+        InitializeSpline();
         InitializeSpawners();
         _cameraSwitcher.SetStartingPriorities();
         _startingTimer.Initialize();
     }
 
-    private void InitializeSplines()
+    public void StartNextLevel()
+    {
+        _cameraSwitcher.SetStartingPriorities();
+        _pickUpSpawner.DeactivateAllPickUps();
+        InitializeSpline();
+        InitializeSpawners();
+        _ui.DeactivateEndScreen();
+        _ui.ResetProgress();
+        _player.ResetScale();
+        _startingTimer.Initialize();
+    }
+
+    private void InitializeSpline()
     {
         PathCreator spline = _splineGetter.GetRandomSpline();
-        _player.InitializeSpline(spline);
+        _player.Initialize(spline);
     }
 
     private void InitializeSpawners()
     {
-        _pickUpSpawner.PickUpSpawned += OnPickUpSpawned;
+        _pickUpSpawner.Spawned += OnPickUpSpawned;
         _pickUpSpawner.Instantiate();
         _boatSpawner.Instantiate();
     }
@@ -57,6 +72,15 @@ public class Game : MonoBehaviour
     {
         pickUp.PickedUp += _player.OnPickedUp;
         pickUp.PickedUp += _ui.OnPickedUp;
+    }
+
+    private void OnPickUpsDeactivated(List<PickUp> pickUps)
+    {
+        foreach (PickUp pickUp in pickUps)
+        {
+            pickUp.PickedUp -= _player.OnPickedUp;
+            pickUp.PickedUp -= _ui.OnPickedUp;
+        }
     }
 
     private void OnStartingTimerStopped()

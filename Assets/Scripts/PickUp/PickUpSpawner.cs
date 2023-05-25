@@ -16,7 +16,8 @@ public class PickUpSpawner : MonoBehaviour
     private Vector3 _currentOffset;
     private float _pickUpValue;
 
-    public event Action<PickUp> PickUpSpawned;
+    public event Action<PickUp> Spawned;
+    public event Action<List<PickUp>> Deactivated;
 
     private void Start()
     {
@@ -39,9 +40,15 @@ public class PickUpSpawner : MonoBehaviour
                 LandPosition(pickUp);
                 pickUp.Initialize(_pickUpValue, _particlesContainer);
                 pickUp.gameObject.SetActive(true);
-                PickUpSpawned?.Invoke(pickUp);
+                Spawned?.Invoke(pickUp);
             }
         }
+    }
+
+    public void DeactivateAllPickUps()
+    {
+        List<PickUp> deactivated = _pool.ReturnAllPickUps();
+        Deactivated?.Invoke(deactivated);
     }
 
     private void LandPosition(PickUp pickUp)

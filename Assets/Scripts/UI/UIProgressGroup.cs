@@ -15,14 +15,21 @@ public class UIProgressGroup : MonoBehaviour
     private int _index = 0;
     private int _maxIndex;
 
-    public void Reveal()
+    public void Show()
     {
-        GetComponent<Animator>().Play("Reveal");
+        GetComponent<Animator>().SetTrigger("Show");
     }
 
     public void Hide()
     {
-        GetComponent<Animator>().Play("Hide");
+        GetComponent<Animator>().SetTrigger("Hide");
+    }
+
+    public void ResetProgress()
+    {
+        _index = 0;
+        _bar.value = 0;
+        UpdateUI();
     }
 
     private void Start()

@@ -30,7 +30,7 @@ public class SplineFollower : MonoBehaviour
     public void Initialize(PathCreator spline)
     {
         _spline = spline;
-        _distanceTravelled += _startOffsetForTestingOnly;
+        _distanceTravelled = _startOffsetForTestingOnly;
         _maxDistance = _spline.path.GetPointAtDistance(_spline.path.length - _endingOffset).z;
         _rigidbody.isKinematic = true;
         SetTransform();
