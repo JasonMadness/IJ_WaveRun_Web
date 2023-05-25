@@ -23,7 +23,7 @@ public class UI : MonoBehaviour
         pickUp.PickedUp -= OnPickedUp;
     }
 
-    public void ChangeProgressBarStatus(bool status)
+    public void SetProgressBarActive(bool status)
     {
         if (status)
             _progressGroup.Show();

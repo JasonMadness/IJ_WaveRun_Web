@@ -56,6 +56,5 @@ public class Player : MonoBehaviour
     public void OnPickedUp(PickUp pickUp)
     {
         _scaler.IncreaseAllAxis();
-        pickUp.PickedUp -= OnPickedUp;
     }
 }

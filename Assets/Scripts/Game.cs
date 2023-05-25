@@ -22,16 +22,16 @@ public class Game : MonoBehaviour
     private void OnEnable()
     {
         _player.SplineEnded += BeginFinishCutscene;
-        _pickUpSpawner.Deactivated += OnPickUpsDeactivated;
         _startingTimer.Stopped += OnStartingTimerStopped;
+        _pickUpSpawner.Created += OnPickUpCreated;
         _ending.GameEnded += _ui.OnGameEnded;
     }
 
     private void OnDisable()
     {
         _player.SplineEnded -= BeginFinishCutscene;
-        _pickUpSpawner.Deactivated -= OnPickUpsDeactivated;
         _startingTimer.Stopped -= OnStartingTimerStopped;
+        _pickUpSpawner.Created -= OnPickUpCreated;
         _ending.GameEnded -= _ui.OnGameEnded;
     }
 
@@ -46,7 +46,6 @@ public class Game : MonoBehaviour
     public void StartNextLevel()
     {
         _cameraSwitcher.SetStartingPriorities();
-        _pickUpSpawner.DeactivateAllPickUps();
         InitializeSpline();
         InitializeSpawners();
         _ui.DeactivateEndScreen();
@@ -63,35 +62,25 @@ public class Game : MonoBehaviour
 
     private void InitializeSpawners()
     {
-        _pickUpSpawner.Spawned += OnPickUpSpawned;
         _pickUpSpawner.Instantiate();
         _boatSpawner.Instantiate();
     }
 
-    private void OnPickUpSpawned(PickUp pickUp)
+    private void OnPickUpCreated(PickUp pickUp)
     {
         pickUp.PickedUp += _player.OnPickedUp;
         pickUp.PickedUp += _ui.OnPickedUp;
     }
 
-    private void OnPickUpsDeactivated(List<PickUp> pickUps)
-    {
-        foreach (PickUp pickUp in pickUps)
-        {
-            pickUp.PickedUp -= _player.OnPickedUp;
-            pickUp.PickedUp -= _ui.OnPickedUp;
-        }
-    }
-
     private void OnStartingTimerStopped()
     {
         _player.StartMovement();
-        _ui.ChangeProgressBarStatus(true);
+        _ui.SetProgressBarActive(true);
     }
-    
+
     private void BeginFinishCutscene()
     {
         _ending.Initialize();
-        _ui.ChangeProgressBarStatus(false);
+        _ui.SetProgressBarActive(false);
     }
 }

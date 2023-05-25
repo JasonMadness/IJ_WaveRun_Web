@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,11 +9,13 @@ public class PickUpPool : MonoBehaviour
 
     private List<PickUp> _pool = new List<PickUp>();
 
+    public event Action<PickUp> Created;
+
     public void Initialize(int poolSize)
     {
         for (int i = 0; i < poolSize; i++)
         {
-            CreatePickUp();
+            Create();
         }
     }
 
@@ -24,38 +27,23 @@ public class PickUpPool : MonoBehaviour
         }
         else
         {
-            CreatePickUp();
+            Create();
             return _pool.Last();
         }
     }
 
-    public List<PickUp> ReturnAllPickUps()
-    {
-        List<PickUp> pickUps = new List<PickUp>();
-
-        foreach (PickUp pickUp in _pool)
-        {
-            if (pickUp.gameObject.activeSelf)
-            {
-                pickUps.Add(pickUp);
-                pickUp.gameObject.SetActive(false);
-            }
-        }
-
-        return pickUps;
-    }
-
     private bool TryGetPickUp(out PickUp pickUp)
     {
-        pickUp = _pool.FirstOrDefault(p => p.gameObject.activeSelf == false);
+        pickUp = _pool.FirstOrDefault(pickUp => pickUp.gameObject.activeSelf == false);
         return pickUp != null;
     }
 
-    private void CreatePickUp()
+    private void Create()
     {
         PickUp pickUp = Instantiate(_prefab);
-        pickUp.transform.SetParent(transform);
         pickUp.gameObject.SetActive(false);
         _pool.Add(pickUp);
+        pickUp.transform.SetParent(transform);
+        Created?.Invoke(pickUp);
     }
 }

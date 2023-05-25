@@ -23,6 +23,7 @@ public class PlayerScaler : MonoBehaviour
     public void Reset()
     {
         transform.localScale = _defaultScale;
+        _targetScale = _defaultScale;
     }
 
     private void Update()
