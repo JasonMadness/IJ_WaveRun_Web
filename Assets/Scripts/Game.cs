@@ -22,6 +22,8 @@ public class Game : MonoBehaviour
     {
         _player.SplineEnded += BeginFinishCutscene;
         _startingTimer.Stopped += OnStartingTimerStopped;
+        _pickUpSpawner.Spawned += OnPickUpSpawned;
+        _pickUpSpawner.UnSpawned += OnPickUpUnSpawned;
         _ending.GameEnded += _ui.OnGameEnded;
     }
 
@@ -29,27 +31,40 @@ public class Game : MonoBehaviour
     {
         _player.SplineEnded -= BeginFinishCutscene;
         _startingTimer.Stopped -= OnStartingTimerStopped;
+        _pickUpSpawner.Spawned -= OnPickUpSpawned;
+        _pickUpSpawner.UnSpawned -= OnPickUpUnSpawned;
         _ending.GameEnded -= _ui.OnGameEnded;
     }
 
     public void StartNewGame()
     {
-        InitializeSplines();
+        InitializeSpline();
         InitializeSpawners();
         _cameraSwitcher.SetStartingPriorities();
         _startingTimer.Initialize();
     }
 
-    private void InitializeSplines()
+    public void StartNextLevel()
+    {
+        _cameraSwitcher.SetStartingPriorities();
+        _pickUpSpawner.UnSpawn();
+        InitializeSpline();
+        InitializeSpawners();
+        _ui.DeactivateEndScreen();
+        _ui.ResetProgress();
+        _player.ResetScale();
+        _startingTimer.Initialize();
+    }
+
+    private void InitializeSpline()
     {
         PathCreator spline = _splineGetter.GetRandomSpline();
-        _player.InitializeSpline(spline);
+        _player.Initialize(spline);
     }
 
     private void InitializeSpawners()
     {
-        _pickUpSpawner.PickUpSpawned += OnPickUpSpawned;
-        _pickUpSpawner.Instantiate();
+        _pickUpSpawner.Spawn();
         _boatSpawner.Instantiate();
     }
 
@@ -59,15 +74,22 @@ public class Game : MonoBehaviour
         pickUp.PickedUp += _ui.OnPickedUp;
     }
 
+    private void OnPickUpUnSpawned(PickUp pickUp)
+    {
+        pickUp.PickedUp -= _player.OnPickedUp;
+        pickUp.PickedUp -= _ui.OnPickedUp;
+    }
+
     private void OnStartingTimerStopped()
     {
         _player.StartMovement();
-        _ui.ChangeProgressBarStatus(true);
+        _ui.SetProgressBarActive(true);
     }
-    
+
     private void BeginFinishCutscene()
     {
+        _pickUpSpawner.UnSpawn();
         _ending.Initialize();
-        _ui.ChangeProgressBarStatus(false);
+        _ui.SetProgressBarActive(false);
     }
 }

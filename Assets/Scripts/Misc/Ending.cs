@@ -11,7 +11,7 @@ public class Ending : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _delayBeforeCutscene = 2.0f;
 
-    private float _interpolateValue = 0;
+    private float _interpolateValue;
     private bool _canMove = false;
 
     public event Action GameEnded;
@@ -19,6 +19,7 @@ public class Ending : MonoBehaviour
     public void Initialize()
     {
         _cameraSwitcher.SetEndingPriorities();
+        _interpolateValue = 0.0f;
         _player.MoveToEndingPosition(_start.position);
         _player.LevelEnded += OnPlayerEndLevel;
     }

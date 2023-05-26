@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,41 +6,26 @@ using UnityEngine;
 public class PickUpPool : MonoBehaviour
 {
     [SerializeField] private PickUp _prefab;
-    
-    private List<PickUp> _pool = new List<PickUp>();
 
-    public void Initialize(int poolSize)
-    {
-        for (int i = 0; i < poolSize; i++)
-        {
-            CreatePickUp();
-        }
-    }
+    private List<PickUp> _pool = new List<PickUp>();
 
     public PickUp GetPickUp()
     {
-        if (TryGetPickUp(out PickUp pickUp))
-        {
-            return pickUp;
-        }
-        else
-        {
-            CreatePickUp();
-            return _pool.Last();
-        }
+        PickUp pickUp = _pool.FirstOrDefault(pickUp => pickUp.gameObject.activeSelf == false);
+        return pickUp != null ? pickUp : Create();
     }
 
-    private bool TryGetPickUp(out PickUp pickUp)
+    public List<PickUp> GetAllActive()
     {
-        pickUp = _pool.FirstOrDefault(p => p.gameObject.activeSelf == false);
-        return pickUp != null;
+        return _pool.Where(pickUp => pickUp.gameObject.activeSelf).ToList();
     }
 
-    private void CreatePickUp()
+    private PickUp Create()
     {
         PickUp pickUp = Instantiate(_prefab);
-        pickUp.transform.SetParent(transform);
         pickUp.gameObject.SetActive(false);
         _pool.Add(pickUp);
+        pickUp.transform.SetParent(transform);
+        return pickUp;
     }
 }

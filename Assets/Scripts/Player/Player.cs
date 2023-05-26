@@ -33,9 +33,14 @@ public class Player : MonoBehaviour
         SplineEnded?.Invoke();
     }
 
-    public void InitializeSpline(PathCreator spline)
+    public void Initialize(PathCreator spline)
     {
         _splineFollower.Initialize(spline);
+    }
+
+    public void ResetScale()
+    {
+        _scaler.Reset();
     }
 
     public void StartMovement()

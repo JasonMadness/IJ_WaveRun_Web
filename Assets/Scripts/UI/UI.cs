@@ -4,7 +4,7 @@ using UnityEngine;
 public class UI : MonoBehaviour
 {
     [SerializeField] private MainMenu _mainMenu;
-    [SerializeField] private UIProgressGroup _progressgroup;
+    [SerializeField] private UIProgressGroup _progressGroup;
     [SerializeField] private EndScreen _endScreen;
 
     internal void Initialize()
@@ -12,18 +12,28 @@ public class UI : MonoBehaviour
         _mainMenu.gameObject.SetActive(true);
     }
 
+    public void DeactivateEndScreen()
+    {
+        _endScreen.gameObject.SetActive(false);
+    }
+
     public void OnPickedUp(PickUp pickUp)
     {
-        _progressgroup.Increase(pickUp.Value);
+        _progressGroup.Increase(pickUp.Value);
         pickUp.PickedUp -= OnPickedUp;
     }
 
-    public void ChangeProgressBarStatus(bool status)
+    public void SetProgressBarActive(bool status)
     {
         if (status)
-            _progressgroup.Reveal();
+            _progressGroup.Show();
         else
-            _progressgroup.Hide();
+            _progressGroup.Hide();
+    }
+
+    public void ResetProgress()
+    {
+        _progressGroup.ResetProgress();
     }
 
     public void OnGameEnded()
