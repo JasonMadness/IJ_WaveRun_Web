@@ -19,6 +19,18 @@ MonoBehaviour:
     m_Key: MainMenu Label
     m_Metadata:
       m_Items: []
+  - m_Id: 78355869495296
+    m_Key: Button Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 79221821304832
+    m_Key: Button Config
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82174007341056
+    m_Key: Button About
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

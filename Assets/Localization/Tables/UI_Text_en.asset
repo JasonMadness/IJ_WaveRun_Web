@@ -22,6 +22,18 @@ MonoBehaviour:
     m_Localized: WAWE RUN
     m_Metadata:
       m_Items: []
+  - m_Id: 78355869495296
+    m_Localized: PLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 79221821304832
+    m_Localized: SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82174007341056
+    m_Localized: ABOUT
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
