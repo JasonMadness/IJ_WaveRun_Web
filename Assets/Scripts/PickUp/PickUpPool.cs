@@ -9,41 +9,23 @@ public class PickUpPool : MonoBehaviour
 
     private List<PickUp> _pool = new List<PickUp>();
 
-    public event Action<PickUp> Created;
-
-    public void Initialize(int poolSize)
-    {
-        for (int i = 0; i < poolSize; i++)
-        {
-            Create();
-        }
-    }
-
     public PickUp GetPickUp()
     {
-        if (TryGetPickUp(out PickUp pickUp))
-        {
-            return pickUp;
-        }
-        else
-        {
-            Create();
-            return _pool.Last();
-        }
+        PickUp pickUp = _pool.FirstOrDefault(pickUp => pickUp.gameObject.activeSelf == false);
+        return pickUp != null ? pickUp : Create();
     }
 
-    private bool TryGetPickUp(out PickUp pickUp)
+    public List<PickUp> GetAllActive()
     {
-        pickUp = _pool.FirstOrDefault(pickUp => pickUp.gameObject.activeSelf == false);
-        return pickUp != null;
+        return _pool.Where(pickUp => pickUp.gameObject.activeSelf).ToList();
     }
 
-    private void Create()
+    private PickUp Create()
     {
         PickUp pickUp = Instantiate(_prefab);
         pickUp.gameObject.SetActive(false);
         _pool.Add(pickUp);
         pickUp.transform.SetParent(transform);
-        Created?.Invoke(pickUp);
+        return pickUp;
     }
 }

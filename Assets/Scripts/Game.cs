@@ -1,5 +1,4 @@
 using PathCreation;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -23,7 +22,8 @@ public class Game : MonoBehaviour
     {
         _player.SplineEnded += BeginFinishCutscene;
         _startingTimer.Stopped += OnStartingTimerStopped;
-        _pickUpSpawner.Created += OnPickUpCreated;
+        _pickUpSpawner.Spawned += OnPickUpSpawned;
+        _pickUpSpawner.UnSpawned += OnPickUpUnSpawned;
         _ending.GameEnded += _ui.OnGameEnded;
     }
 
@@ -31,7 +31,8 @@ public class Game : MonoBehaviour
     {
         _player.SplineEnded -= BeginFinishCutscene;
         _startingTimer.Stopped -= OnStartingTimerStopped;
-        _pickUpSpawner.Created -= OnPickUpCreated;
+        _pickUpSpawner.Spawned -= OnPickUpSpawned;
+        _pickUpSpawner.UnSpawned -= OnPickUpUnSpawned;
         _ending.GameEnded -= _ui.OnGameEnded;
     }
 
@@ -46,6 +47,7 @@ public class Game : MonoBehaviour
     public void StartNextLevel()
     {
         _cameraSwitcher.SetStartingPriorities();
+        _pickUpSpawner.UnSpawn();
         InitializeSpline();
         InitializeSpawners();
         _ui.DeactivateEndScreen();
@@ -62,14 +64,20 @@ public class Game : MonoBehaviour
 
     private void InitializeSpawners()
     {
-        _pickUpSpawner.Instantiate();
+        _pickUpSpawner.Spawn();
         _boatSpawner.Instantiate();
     }
 
-    private void OnPickUpCreated(PickUp pickUp)
+    private void OnPickUpSpawned(PickUp pickUp)
     {
         pickUp.PickedUp += _player.OnPickedUp;
         pickUp.PickedUp += _ui.OnPickedUp;
+    }
+
+    private void OnPickUpUnSpawned(PickUp pickUp)
+    {
+        pickUp.PickedUp -= _player.OnPickedUp;
+        pickUp.PickedUp -= _ui.OnPickedUp;
     }
 
     private void OnStartingTimerStopped()
@@ -80,6 +88,7 @@ public class Game : MonoBehaviour
 
     private void BeginFinishCutscene()
     {
+        _pickUpSpawner.UnSpawn();
         _ending.Initialize();
         _ui.SetProgressBarActive(false);
     }

@@ -13,7 +13,7 @@ public class SplineFollower : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private PathCreator _spline;
-    private Vector3 _horizontalPosition = Vector3.zero;
+    private Vector3 _horizontalPosition;
     private bool _canMove = false;
     private float _horizontalInput;
     private float _distanceTravelled;
@@ -30,6 +30,7 @@ public class SplineFollower : MonoBehaviour
     public void Initialize(PathCreator spline)
     {
         _spline = spline;
+        _horizontalPosition = Vector3.zero;
         _distanceTravelled = _startOffsetForTestingOnly;
         _maxDistance = _spline.path.GetPointAtDistance(_spline.path.length - _endingOffset).z;
         _rigidbody.isKinematic = true;
