@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class UIProgressGroup : MonoBehaviour
@@ -53,6 +55,7 @@ public class UIProgressGroup : MonoBehaviour
     private void SetText()
     {
         _text.text = _waveSizes[_index];
+        _text.text = LocalizationSettings.StringDatabase.GetLocalizedString("UI_Text", "Wave_Tiny");
     }
 
     private void UpdateUI()

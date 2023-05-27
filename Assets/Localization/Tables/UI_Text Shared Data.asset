@@ -31,6 +31,10 @@ MonoBehaviour:
     m_Key: Button About
     m_Metadata:
       m_Items: []
+  - m_Id: 299842458656768
+    m_Key: Wave_Tiny
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
