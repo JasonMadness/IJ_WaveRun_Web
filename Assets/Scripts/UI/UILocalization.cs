@@ -7,6 +7,6 @@ public class UILocalization : MonoBehaviour
 {
     public string GetWaveLocalizedName()
     {
-
+        return "";
     }
 }

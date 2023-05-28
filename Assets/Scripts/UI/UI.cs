@@ -39,5 +39,6 @@ public class UI : MonoBehaviour
     public void OnGameEnded()
     {
         _endScreen.gameObject.SetActive(true);
+        _endScreen.Reveal();
     }
 }
