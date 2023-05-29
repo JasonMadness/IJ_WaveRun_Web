@@ -4,7 +4,7 @@ public class Boat : MonoBehaviour
 {
     [SerializeField] private float _upOffset = 0.1f;
     [SerializeField] private float _sideOffset = 0.1f;
-    [SerializeField] private bool _needNormalVector;
+    [SerializeField] private bool _needNormalFromRaycast;
 
     public void SetLandTransform()
     {
@@ -14,7 +14,7 @@ public class Boat : MonoBehaviour
         Vector3 sideOffset = GetRandomSideOffset();
         transform.position = hit.point;
 
-        if (_needNormalVector)
+        if (_needNormalFromRaycast)
             transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
         //transform.SetPositionAndRotation(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
         transform.position += upOffset + sideOffset;
