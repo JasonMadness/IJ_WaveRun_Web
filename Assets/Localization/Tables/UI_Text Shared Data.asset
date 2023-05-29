@@ -35,6 +35,22 @@ MonoBehaviour:
     m_Key: Wave_Tiny
     m_Metadata:
       m_Items: []
+  - m_Id: 1087849172344832
+    m_Key: Wave_Small
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1087950590615552
+    m_Key: Wave_Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1088035965673472
+    m_Key: Wave_Large
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1088101837217792
+    m_Key: Wave_Deadly
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

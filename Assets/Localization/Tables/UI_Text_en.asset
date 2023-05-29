@@ -38,6 +38,22 @@ MonoBehaviour:
     m_Localized: TINY WAVE
     m_Metadata:
       m_Items: []
+  - m_Id: 1087849172344832
+    m_Localized: SMALL WAVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1087950590615552
+    m_Localized: MEDIUM WAVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1088035965673472
+    m_Localized: LARGE WAVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1088101837217792
+    m_Localized: DEADLY DISASTER
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
