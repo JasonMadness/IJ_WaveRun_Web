@@ -34,6 +34,26 @@ MonoBehaviour:
     m_Localized: HAKKINDA
     m_Metadata:
       m_Items: []
+  - m_Id: 1087849172344832
+    m_Localized: "K\xDC\xC7\xDCK DALGA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1087950590615552
+    m_Localized: ORTA DALGA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1088035965673472
+    m_Localized: "B\xDCY\xDCK DALGA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1088101837217792
+    m_Localized: "\xD6L\xDCMC\xDCL AFET"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 299842458656768
+    m_Localized: "M\u0130N\u0130K DALGA"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
