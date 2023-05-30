@@ -8,6 +8,7 @@ public class Game : MonoBehaviour
     [SerializeField] private PickUpSpawner _pickUpSpawner;
     [SerializeField] private BoatSpawner _boatSpawner;
     [SerializeField] private CameraSwitcher _cameraSwitcher;
+    [SerializeField] private Score _score;
     [SerializeField] private UI _ui;
     [SerializeField] private Timer _startingTimer;
     [SerializeField] private Ending _ending;
@@ -24,6 +25,7 @@ public class Game : MonoBehaviour
         _startingTimer.Stopped += OnStartingTimerStopped;
         _pickUpSpawner.Spawned += OnPickUpSpawned;
         _pickUpSpawner.UnSpawned += OnPickUpUnSpawned;
+        _boatSpawner.Spawned += OnBoatSpawned;
         _ending.GameEnded += _ui.OnGameEnded;
     }
 
@@ -33,6 +35,7 @@ public class Game : MonoBehaviour
         _startingTimer.Stopped -= OnStartingTimerStopped;
         _pickUpSpawner.Spawned -= OnPickUpSpawned;
         _pickUpSpawner.UnSpawned -= OnPickUpUnSpawned;
+        _boatSpawner.Spawned -= OnBoatSpawned;
         _ending.GameEnded -= _ui.OnGameEnded;
     }
 
@@ -73,6 +76,11 @@ public class Game : MonoBehaviour
     {
         pickUp.PickedUp += _player.OnPickedUp;
         pickUp.PickedUp += _ui.OnPickedUp;
+    }
+
+    private void OnBoatSpawned(Boat boat)
+    {
+        boat.Destroyed += _score.OnBoatDestroyed;
     }
 
     private void OnPickUpUnSpawned(PickUp pickUp)

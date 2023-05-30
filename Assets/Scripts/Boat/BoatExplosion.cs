@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class BoatExplosion : MonoBehaviour
 {
     [SerializeField] private BoatFragmented _prefab;
+
+    public event Action Destroyed;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -11,6 +14,7 @@ public class BoatExplosion : MonoBehaviour
             gameObject.SetActive(false);
             BoatFragmented boat = Instantiate(_prefab, transform.position, transform.rotation);
             boat.Explode();
+            Destroyed?.Invoke();
             Destroy(gameObject);
         }
     }
