@@ -40,6 +40,7 @@ public class Game : MonoBehaviour
     {
         InitializeSpline();
         InitializeSpawners();
+        _ui.ResetProgress();
         _cameraSwitcher.SetStartingPriorities();
         _startingTimer.Initialize();
     }

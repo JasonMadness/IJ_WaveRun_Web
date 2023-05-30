@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _upOffset: 0.1
   _sideOffset: 0.1
-  _needNormalVector: 1
+  _needNormalFromRaycast: 1
 --- !u!114 &-5763521931395657669
 MonoBehaviour:
   m_ObjectHideFlags: 0
