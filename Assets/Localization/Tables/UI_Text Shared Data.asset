@@ -51,6 +51,14 @@ MonoBehaviour:
     m_Key: Wave_Deadly
     m_Metadata:
       m_Items: []
+  - m_Id: 1330711059275776
+    m_Key: End_NextLevel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1330758341664768
+    m_Key: End_MainMenu
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
