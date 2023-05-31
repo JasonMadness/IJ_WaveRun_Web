@@ -70,6 +70,10 @@ MonoBehaviour:
     m_Localized: "GER\u0130"
     m_Metadata:
       m_Items: []
+  - m_Id: 1911614832144384
+    m_Localized: GOL
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
