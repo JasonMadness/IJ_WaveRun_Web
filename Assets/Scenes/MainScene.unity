@@ -1365,6 +1365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 151319203}
   - component: {fileID: 151319204}
+  - component: {fileID: 151319205}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -1402,6 +1403,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _material: {fileID: 2100000, guid: a9befcf1299231c4e9e10c79e9e3130a, type: 2}
   _offset: {x: -0.5, y: 0.3}
+--- !u!95 &151319205
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151319202}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: abb36089e2ec8aa43b09328774f6c906, type: 3}
+  m_Controller: {fileID: 9100000, guid: 3a22add0a569303459b68d29438bc4ab, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &164988346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1109012502907409792, guid: 3f61f156540d54b40bdac3828f6706f5, type: 3}
@@ -9205,7 +9226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abb36089e2ec8aa43b09328774f6c906, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abb36089e2ec8aa43b09328774f6c906, type: 3}
       propertyPath: m_LocalRotation.z
@@ -9217,7 +9238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abb36089e2ec8aa43b09328774f6c906, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abb36089e2ec8aa43b09328774f6c906, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -9231,7 +9252,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a9befcf1299231c4e9e10c79e9e3130a, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: abb36089e2ec8aa43b09328774f6c906, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: abb36089e2ec8aa43b09328774f6c906, type: 3}
 --- !u!4 &1241654362 stripped
 Transform:
@@ -13761,6 +13783,7 @@ MonoBehaviour:
   _mover: {fileID: 1924537547}
   _scaler: {fileID: 1924537546}
   _splineFollower: {fileID: 1924537542}
+  _modelAnimator: {fileID: 151319205}
 --- !u!65 &1924537544
 BoxCollider:
   m_ObjectHideFlags: 0

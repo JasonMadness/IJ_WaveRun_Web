@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerMover _mover;
     [SerializeField] private PlayerScaler _scaler;
     [SerializeField] private SplineFollower _splineFollower;
+    [SerializeField] private Animator _modelAnimator;
 
     public event Action SplineEnded;
     public event Action LevelEnded;
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     private void OnSplineFinished()
     {
         SplineEnded?.Invoke();
+        _modelAnimator.SetTrigger("Straight");
     }
 
     public void Initialize(PathCreator spline)
