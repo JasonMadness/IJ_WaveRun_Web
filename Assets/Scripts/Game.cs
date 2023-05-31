@@ -26,6 +26,7 @@ public class Game : MonoBehaviour
         _pickUpSpawner.UnSpawned += OnPickUpUnSpawned;
         _boatSpawner.Spawned += OnBoatSpawned;
         _ending.GameEnded += _ui.OnGameEnded;
+        _ending.GameEnded += OnGameEnded;
     }
 
     private void OnDisable()
@@ -36,6 +37,7 @@ public class Game : MonoBehaviour
         _pickUpSpawner.UnSpawned -= OnPickUpUnSpawned;
         _boatSpawner.Spawned -= OnBoatSpawned;
         _ending.GameEnded -= _ui.OnGameEnded;
+        _ending.GameEnded -= OnGameEnded;
     }
 
     public void StartNewGame()
@@ -103,5 +105,10 @@ public class Game : MonoBehaviour
         _pickUpSpawner.UnSpawn();
         _ending.Initialize();
         _ui.SetProgressBarActive(false);
+    }
+
+    private void OnGameEnded()
+    {
+        _score.AddToTotal(_score.LevelScore);
     }
 }
