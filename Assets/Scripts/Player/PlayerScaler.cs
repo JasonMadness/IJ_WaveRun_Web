@@ -4,6 +4,7 @@ public class PlayerScaler : MonoBehaviour
 {
     [SerializeField] private GameObject _model;
     [SerializeField] private Vector3 _scaleUpgrade;
+    [SerializeField] private Vector3 _sideUpgrade;
     [SerializeField] private float _scaleUpdateSpeed;
 
     private Vector3 _defaultScale;
@@ -18,6 +19,11 @@ public class PlayerScaler : MonoBehaviour
     public void IncreaseAllAxis()
     {
         _targetScale += _scaleUpgrade;
+    }
+
+    public void ExpandSides()
+    {
+        _targetScale += _sideUpgrade;
     }
 
     public void Reset()

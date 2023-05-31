@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     {
         SplineEnded?.Invoke();
         _modelAnimator.SetTrigger("Up");
+        _scaler.ExpandSides();
     }
 
     public void Initialize(PathCreator spline)

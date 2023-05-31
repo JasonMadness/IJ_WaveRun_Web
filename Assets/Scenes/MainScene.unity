@@ -13766,7 +13766,7 @@ MonoBehaviour:
   _speed: 1
   _horizontalSpeed: 0.3
   _horizontalBounding: 0.2
-  _startOffsetForTestingOnly: 20
+  _startOffsetForTestingOnly: 0
   _endingOffset: 1
 --- !u!114 &1924537543
 MonoBehaviour:
@@ -13827,7 +13827,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 151319202}
   _scaleUpgrade: {x: 0.02, y: 0.02, z: 0.02}
-  _scaleUpdateSpeed: 0.5
+  _sideUpgrade: {x: 0.5, y: 0.2, z: 0}
+  _scaleUpdateSpeed: 0.7
 --- !u!114 &1924537547
 MonoBehaviour:
   m_ObjectHideFlags: 0
