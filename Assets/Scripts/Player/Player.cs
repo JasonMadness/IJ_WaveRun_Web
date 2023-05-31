@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     private void OnSplineFinished()
     {
         SplineEnded?.Invoke();
-        _modelAnimator.SetTrigger("Straight");
+        _modelAnimator.SetTrigger("Up");
     }
 
     public void Initialize(PathCreator spline)
@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     public void ResetScale()
     {
         _scaler.Reset();
+        _modelAnimator.SetTrigger("Down");
     }
 
     public void StartMovement()
