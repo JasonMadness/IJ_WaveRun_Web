@@ -1294,12 +1294,12 @@ RectTransform:
   m_Children:
   - {fileID: 887204692}
   - {fileID: 1308708739}
-  m_Father: {fileID: 563492242}
-  m_RootOrder: 4
+  m_Father: {fileID: 936810716}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 650, y: -150}
+  m_AnchoredPosition: {x: 650, y: -60}
   m_SizeDelta: {x: 400, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &150224331
@@ -2538,7 +2538,7 @@ RectTransform:
   - {fileID: 1950561489}
   - {fileID: 1216752503}
   m_Father: {fileID: 563492242}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3454,9 +3454,7 @@ RectTransform:
   m_Children:
   - {fileID: 1566794749}
   - {fileID: 61274066}
-  - {fileID: 729771340}
   - {fileID: 936810716}
-  - {fileID: 150224330}
   - {fileID: 436721335}
   - {fileID: 1249931301}
   m_Father: {fileID: 2008306129}
@@ -4610,6 +4608,7 @@ GameObject:
   - component: {fileID: 729771340}
   - component: {fileID: 729771342}
   - component: {fileID: 729771341}
+  - component: {fileID: 729771343}
   m_Layer: 5
   m_Name: InGameIcons
   m_TagString: Untagged
@@ -4632,12 +4631,12 @@ RectTransform:
   - {fileID: 1816829770}
   - {fileID: 649059691}
   - {fileID: 907951495}
-  m_Father: {fileID: 563492242}
-  m_RootOrder: 2
+  m_Father: {fileID: 936810716}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -650, y: -150}
+  m_AnchoredPosition: {x: -650, y: -60}
   m_SizeDelta: {x: 400, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &729771341
@@ -4678,6 +4677,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729771339}
   m_CullTransparentMesh: 1
+--- !u!95 &729771343
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729771339}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &737407694 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2688358369633877802, guid: bfb5b173941f1b247a3f529907ac7907, type: 3}
@@ -6072,13 +6091,15 @@ RectTransform:
   m_GameObject: {fileID: 936810714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 990990461}
   - {fileID: 1869153894}
+  - {fileID: 150224330}
+  - {fileID: 729771340}
   m_Father: {fileID: 563492242}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -9249,7 +9270,7 @@ RectTransform:
   m_Children:
   - {fileID: 1820570666}
   m_Father: {fileID: 563492242}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

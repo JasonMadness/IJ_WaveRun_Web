@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using TMPro;
 
@@ -21,6 +20,7 @@ public class Score : MonoBehaviour
 
     public void OnPickedUp(PickUp pickUp)
     {
+        pickUp.PickedUp -= OnPickedUp;
         _dropsCount++;
         SetScore();
     }

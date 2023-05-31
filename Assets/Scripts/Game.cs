@@ -18,7 +18,6 @@ public class Game : MonoBehaviour
         _ui.Initialize();
     }
 
-
     private void OnEnable()
     {
         _player.SplineEnded += BeginFinishCutscene;
