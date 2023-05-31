@@ -67,6 +67,10 @@ MonoBehaviour:
     m_Key: Button_Back
     m_Metadata:
       m_Items: []
+  - m_Id: 1911614832144384
+    m_Key: Score
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
