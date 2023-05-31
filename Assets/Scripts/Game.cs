@@ -44,6 +44,7 @@ public class Game : MonoBehaviour
         InitializeSpline();
         InitializeSpawners();
         _ui.ResetProgress();
+        _score.Reset();
         _cameraSwitcher.SetStartingPriorities();
         _startingTimer.Initialize();
     }
@@ -56,6 +57,7 @@ public class Game : MonoBehaviour
         InitializeSpawners();
         _ui.DeactivateEndScreen();
         _ui.ResetProgress();
+        _score.Reset();
         _player.ResetScale();
         _startingTimer.Initialize();
     }
@@ -76,6 +78,7 @@ public class Game : MonoBehaviour
     {
         pickUp.PickedUp += _player.OnPickedUp;
         pickUp.PickedUp += _ui.OnPickedUp;
+        pickUp.PickedUp += _score.OnPickedUp;
     }
 
     private void OnBoatSpawned(Boat boat)
@@ -87,6 +90,7 @@ public class Game : MonoBehaviour
     {
         pickUp.PickedUp -= _player.OnPickedUp;
         pickUp.PickedUp -= _ui.OnPickedUp;
+        pickUp.PickedUp -= _score.OnPickedUp;
     }
 
     private void OnStartingTimerStopped()

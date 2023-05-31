@@ -99,7 +99,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1109012502907409792}
   - component: {fileID: 3566591476887338640}
-  - component: {fileID: -602513381342756622}
   - component: {fileID: -8996770476824288779}
   m_Layer: 0
   m_Name: Boat_Static
@@ -149,19 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _upOffset: 0.18
   _sideOffset: 0
-  _needNormalVector: 0
---- !u!114 &-602513381342756622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301688751836565306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c4ccc23ead0190438db729a78f4ed99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _needNormalFromRaycast: 0
   _prefab: {fileID: -717725649189232105, guid: f4fee189a326b344d8dc0534d59f4a8b, type: 3}
 --- !u!65 &-8996770476824288779
 BoxCollider:

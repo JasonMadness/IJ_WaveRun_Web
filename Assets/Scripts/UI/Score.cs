@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using TMPro;
 
@@ -13,7 +12,14 @@ public class Score : MonoBehaviour
     private int _boatsCount;
     private int _totalScore;
 
-    public void OnPickedUp()
+    public void Reset()
+    {
+        _dropsCount = 0;
+        _boatsCount = 0;
+        SetScore();
+    }
+
+    public void OnPickedUp(PickUp pickUp)
     {
         _dropsCount++;
         SetScore();

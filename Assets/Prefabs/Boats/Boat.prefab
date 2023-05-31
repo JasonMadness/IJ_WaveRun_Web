@@ -100,7 +100,6 @@ GameObject:
   - component: {fileID: 1109012502907409792}
   - component: {fileID: 3566591476887338640}
   - component: {fileID: -5763521931395657669}
-  - component: {fileID: -602513381342756622}
   - component: {fileID: -8996770476824288779}
   m_Layer: 0
   m_Name: Boat
@@ -151,6 +150,7 @@ MonoBehaviour:
   _upOffset: 0.1
   _sideOffset: 0.1
   _needNormalFromRaycast: 1
+  _prefab: {fileID: -717725649189232105, guid: f4fee189a326b344d8dc0534d59f4a8b, type: 3}
 --- !u!114 &-5763521931395657669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,19 +166,6 @@ MonoBehaviour:
   x: 0
   y: 1
   z: 0
---- !u!114 &-602513381342756622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301688751836565306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c4ccc23ead0190438db729a78f4ed99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefab: {fileID: -717725649189232105, guid: f4fee189a326b344d8dc0534d59f4a8b, type: 3}
 --- !u!65 &-8996770476824288779
 BoxCollider:
   m_ObjectHideFlags: 0
