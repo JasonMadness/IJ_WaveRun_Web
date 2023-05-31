@@ -9,6 +9,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c399efc08928422d8828d74a2b19ffba158600/5c/6a549715/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/Audio.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/GradientColorGetter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Timer.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -96,7 +97,7 @@
       <workItem from="1685297055991" duration="1552000" />
       <workItem from="1685368478577" duration="6150000" />
       <workItem from="1685461130936" duration="1349000" />
-      <workItem from="1685547208774" duration="1101000" />
+      <workItem from="1685547208774" duration="3839000" />
     </task>
     <servers />
   </component>

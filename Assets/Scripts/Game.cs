@@ -10,12 +10,14 @@ public class Game : MonoBehaviour
     [SerializeField] private CameraSwitcher _cameraSwitcher;
     [SerializeField] private Score _score;
     [SerializeField] private UI _ui;
+    [SerializeField] private Audio _audio;
     [SerializeField] private Timer _startingTimer;
     [SerializeField] private Ending _ending;
 
     private void Start()
     {
         _ui.Initialize();
+        _audio.PlayMainMenuTheme();
     }
 
     private void OnEnable()
