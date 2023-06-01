@@ -9,6 +9,7 @@ public class Game : MonoBehaviour
     [SerializeField] private BoatSpawner _boatSpawner;
     [SerializeField] private CameraSwitcher _cameraSwitcher;
     [SerializeField] private Score _score;
+    [SerializeField] private TotalScore _totalScore;
     [SerializeField] private UI _ui;
     [SerializeField] private Audio _audio;
     [SerializeField] private Timer _startingTimer;
@@ -111,6 +112,6 @@ public class Game : MonoBehaviour
 
     private void OnGameEnded()
     {
-        _score.AddToTotal(_score.LevelScore);
+        _totalScore.StartIncreasing(_score.LevelScore);
     }
 }

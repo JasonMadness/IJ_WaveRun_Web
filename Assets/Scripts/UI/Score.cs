@@ -42,9 +42,4 @@ public class Score : MonoBehaviour
         _levelScore = _dropsCount * _boatsCount;
         _score.text = _levelScore.ToString();
     }
-
-    public void AddToTotal(int score)
-    {
-        _totalScore += score;
-    }
 }
