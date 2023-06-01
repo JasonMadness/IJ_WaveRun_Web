@@ -1,26 +1,36 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class TotalScore : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
+
+    private const string SCORE = "Score";
     
     private int _score;
     private int _additionValue;
+    private float _delayBeforeCalculations = 1.0f;
+    private float _calculationTime = 2.0f;
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey(SCORE))
+            _score = PlayerPrefs.GetInt(SCORE);
+    }
 
     public void StartIncreasing(int value)
     {
         StartCoroutine(Increase(value));
+        PlayerPrefs.SetInt(SCORE, _score + _additionValue);
     }
 
     private IEnumerator Increase(int value)
     {
         _additionValue = value;
         UpdateUI();
-        yield return new WaitForSeconds(1);
-        WaitForSeconds delay = new WaitForSeconds(2.0f / _additionValue);
+        yield return new WaitForSeconds(_delayBeforeCalculations);
+        WaitForSeconds delay = new WaitForSeconds(_calculationTime / _additionValue);
 
         while (_additionValue > 0)
         {
@@ -34,7 +44,7 @@ public class TotalScore : MonoBehaviour
     private void UpdateUI()
     {
         if (_additionValue > 0)
-            _text.text = $"{_score} + {_additionValue}";
+            _text.text = $"{_score} + <color=green>{_additionValue}</color>";
         else
             _text.text = _score.ToString();
     }
