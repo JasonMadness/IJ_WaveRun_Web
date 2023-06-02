@@ -51,6 +51,7 @@ public class Ending : MonoBehaviour
             {
                 _canMove = false;
                 GameEnded?.Invoke();
+                _player.GetComponent<Rigidbody>().isKinematic = true;
             }
         }
     }

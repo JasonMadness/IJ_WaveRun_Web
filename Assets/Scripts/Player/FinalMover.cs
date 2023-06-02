@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMover : MonoBehaviour
+public class FinalMover : MonoBehaviour
 {
     [SerializeField] private float _endingSpeed;
 
@@ -24,7 +24,7 @@ public class PlayerMover : MonoBehaviour
     private IEnumerator MoveSmoothly(Vector3 from, Vector3 to)
     {
         _rigidbody.isKinematic = true;
-        float interpolateValue = 0;
+        float interpolateValue = 0.0f;
         WaitForSeconds delay = new WaitForSeconds(Time.fixedDeltaTime / _endingSpeed);
 
         while (interpolateValue < 1)

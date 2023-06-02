@@ -17,6 +17,10 @@ public class TotalScore : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(SCORE))
             _score = PlayerPrefs.GetInt(SCORE);
+        else
+            _score = 0;
+            
+        UpdateUI();
     }
 
     public void StartIncreasing(int value)

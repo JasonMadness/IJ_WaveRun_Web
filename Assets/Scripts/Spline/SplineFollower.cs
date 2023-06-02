@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class SplineFollower : MonoBehaviour
 {
+    [SerializeField] private HorizontalInput _horizontalInput;
     [SerializeField] private float _speed = 1.0f;
     [SerializeField] private float _horizontalSpeed = 0.5f;
     [SerializeField] private float _horizontalBounding = 0.25f;
@@ -15,7 +16,7 @@ public class SplineFollower : MonoBehaviour
     private PathCreator _spline;
     private Vector3 _horizontalPosition;
     private bool _canMove = false;
-    private float _horizontalInput;
+    private float _input;
     private float _distanceTravelled;
     private float _currentDistance;
     private float _maxDistance;
@@ -30,7 +31,7 @@ public class SplineFollower : MonoBehaviour
     public void Initialize(PathCreator spline)
     {
         _spline = spline;
-        _horizontalInput = 0.0f;
+        _input = 0.0f;
         _horizontalPosition = Vector3.zero;
         _distanceTravelled = _startOffsetForTestingOnly;
         _maxDistance = _spline.path.GetPointAtDistance(_spline.path.length - _endingOffset).z;
@@ -51,9 +52,9 @@ public class SplineFollower : MonoBehaviour
 
         if (_currentDistance < _maxDistance)
         {
-            _horizontalInput += Input.GetAxisRaw("Horizontal") * _horizontalSpeed * Time.deltaTime;
-            _horizontalInput = Mathf.Clamp(_horizontalInput, -_horizontalBounding, _horizontalBounding);
-            _horizontalPosition = Vector3.right * _horizontalInput;
+            _input += _horizontalInput.GetInput() * _horizontalSpeed * Time.deltaTime;
+            _input = Mathf.Clamp(_input, -_horizontalBounding, _horizontalBounding);
+            _horizontalPosition = Vector3.right * _input;
         }
         else
         {
