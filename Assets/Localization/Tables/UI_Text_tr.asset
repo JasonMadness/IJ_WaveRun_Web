@@ -71,7 +71,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1911614832144384
-    m_Localized: GOL
+    m_Localized: PUAN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2518019003424768
+    m_Localized: TOPLAM PUANLAR
     m_Metadata:
       m_Items: []
   references:
