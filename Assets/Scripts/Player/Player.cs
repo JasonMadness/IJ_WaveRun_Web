@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Scaler _scaler;
     [SerializeField] private SplineFollower _splineFollower;
     [SerializeField] private Animator _modelAnimator;
+    [SerializeField] private AudioSource _audio;
 
     private const string UP = "Up";
     private const string DOWN = "Down";
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
     public void Initialize(PathCreator spline)
     {
         _splineFollower.Initialize(spline);
+        _audio.Play();
     }
 
     public void ResetScale()
