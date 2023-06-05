@@ -25,8 +25,9 @@ public class TotalScore : MonoBehaviour
 
     public void StartIncreasing(int value)
     {
+        int totalScore = _score + value;
+        PlayerPrefs.SetInt(SCORE, totalScore);
         StartCoroutine(Increase(value));
-        PlayerPrefs.SetInt(SCORE, _score + _additionValue);
     }
 
     private IEnumerator Increase(int value)
