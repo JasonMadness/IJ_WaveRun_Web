@@ -1,12 +1,11 @@
 using PathCreation;
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private FinalMover _mover;
-    [SerializeField] private PlayerScaler _scaler;
+    [SerializeField] private Scaler _scaler;
     [SerializeField] private SplineFollower _splineFollower;
     [SerializeField] private Animator _modelAnimator;
     [SerializeField] private AudioSource _waterDropAudio;

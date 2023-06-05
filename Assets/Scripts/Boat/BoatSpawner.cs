@@ -30,7 +30,7 @@ public class BoatSpawner : MonoBehaviour
         Boat newBoat = Instantiate(boat);
         newBoat.transform.position = point.position;
         newBoat.transform.SetParent(point.transform);
-        newBoat.SetLandTransform();
+        newBoat.LandTransform();
         return newBoat;
     }
 }

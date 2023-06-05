@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerScaler : MonoBehaviour
+public class Scaler : MonoBehaviour
 {
     [SerializeField] private GameObject _model;
     [SerializeField] private Vector3 _scaleUpgrade;

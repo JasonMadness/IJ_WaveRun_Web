@@ -3,10 +3,10 @@ using UnityEngine;
 public class UI : MonoBehaviour
 {
     [SerializeField] private MainMenu _mainMenu;
-    [SerializeField] private UIProgressGroup _progressGroup;
+    [SerializeField] private ProgressGroup _progressGroup;
     [SerializeField] private EndScreen _endScreen;
 
-    internal void Initialize()
+    public void Initialize()
     {
         _mainMenu.gameObject.SetActive(true);
     }

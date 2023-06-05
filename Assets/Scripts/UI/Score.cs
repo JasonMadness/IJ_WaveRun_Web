@@ -10,7 +10,6 @@ public class Score : MonoBehaviour
     private int _dropsCount;
     private int _boatsCount;
     private int _levelScore;
-    private int _totalScore;
 
     public int LevelScore => _levelScore;
 

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIProgressGroup : MonoBehaviour
+public class ProgressGroup : MonoBehaviour
 {
     [SerializeField] private Slider _bar;
     [SerializeField] private Image _barFill;
@@ -13,7 +13,7 @@ public class UIProgressGroup : MonoBehaviour
     [SerializeField] private List<Color> _colors;
     [SerializeField] private GradientColorGetter _colorGetter;
     [SerializeField] [Range(0.0f, 1.0f)] private float _updateSpeed;
-    [SerializeField] private UILocalization _localization;
+    [SerializeField] private LocalizationTables _localization;
 
     private int _index = 0;
     private int _maxIndex;
@@ -54,8 +54,6 @@ public class UIProgressGroup : MonoBehaviour
 
     private void SetColors()
     {
-        //_barFill.color = _colors[_index];
-        //_text.color = _colors[_index];
         _barFill.color = _colorGetter.GetColor(_bar.value);
         _text.color = _colorGetter.GetColor(_bar.value);
     }
@@ -63,7 +61,7 @@ public class UIProgressGroup : MonoBehaviour
     private void SetText()
     {
         _text.text = _waveSizes[_index];
-        _text.text = _localization.GetSizeString(_index);
+        _text.text = _localization.GetWaveSize(_index);
     }
 
     private void UpdateUI()

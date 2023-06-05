@@ -10,7 +10,7 @@ public class Boat : MonoBehaviour
 
     public event Action<Boat> Destroyed;
 
-    public void SetLandTransform()
+    public void LandTransform()
     {
         Ray ray = new Ray(transform.position, Vector3.down);
         Physics.Raycast(ray, out RaycastHit hit);

@@ -7,7 +7,6 @@ public class HorizontalInput : MonoBehaviour
     private const string HORIZONTAL = "Horizontal";
 
     private float _touchPositionX;
-    private float _horizontalInput;
     private float _halfOfScreen; 
     private float _halfOfPlayArea;
 
