@@ -4,6 +4,7 @@ public class Audio : MonoBehaviour
 {
     [SerializeField] private AudioSource _mainMenu;
     [SerializeField] private AudioSource _game;
+    [SerializeField] private AudioSource _waterDrop;
 
     public void PlayMainMenuTheme()
     {
@@ -23,5 +24,11 @@ public class Audio : MonoBehaviour
     public void StopGameTheme()
     {
         _game.Stop();
+    }
+
+    public void OnPickedUp(PickUp pickUp)
+    {
+        _waterDrop.Play();
+        pickUp.PickedUp -= OnPickedUp;
     }
 }

@@ -83,6 +83,7 @@ public class Game : MonoBehaviour
         pickUp.PickedUp += _player.OnPickedUp;
         pickUp.PickedUp += _ui.OnPickedUp;
         pickUp.PickedUp += _score.OnPickedUp;
+        pickUp.PickedUp += _audio.OnPickedUp;
     }
 
     private void OnBoatSpawned(Boat boat)
@@ -95,19 +96,20 @@ public class Game : MonoBehaviour
         pickUp.PickedUp -= _player.OnPickedUp;
         pickUp.PickedUp -= _ui.OnPickedUp;
         pickUp.PickedUp -= _score.OnPickedUp;
+        pickUp.PickedUp -= _audio.OnPickedUp;
     }
 
     private void OnStartingTimerStopped()
     {
         _player.StartMovement();
-        _ui.SetProgressBarActive(true);
+        _ui.ShowProgressBar();
     }
 
     private void BeginFinishCutscene()
     {
         _pickUpSpawner.UnSpawn();
         _ending.Initialize();
-        _ui.SetProgressBarActive(false);
+        _ui.HideProgressBar();
     }
 
     private void OnGameEnded()

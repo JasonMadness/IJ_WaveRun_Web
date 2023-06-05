@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Animator))]
 public class ProgressGroup : MonoBehaviour
 {
     [SerializeField] private Slider _bar;
@@ -15,19 +16,28 @@ public class ProgressGroup : MonoBehaviour
     [SerializeField] [Range(0.0f, 1.0f)] private float _updateSpeed;
     [SerializeField] private LocalizationTables _localization;
 
+    private const string SHOW = "Show";
+    private const string HIDE = "Hide";
+
+    private Animator _animator;
     private int _index = 0;
     private int _maxIndex;
     private float _targetValue = 0.0f;
     private bool _needToUpdate = false;
 
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
     public void Show()
     {
-        GetComponent<Animator>().SetTrigger("Show");
+        _animator.SetTrigger(SHOW);
     }
 
     public void Hide()
     {
-        GetComponent<Animator>().SetTrigger("Hide");
+        _animator.SetTrigger(HIDE);
     }
 
     public void ResetProgress()

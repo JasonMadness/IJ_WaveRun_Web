@@ -22,12 +22,14 @@ public class UI : MonoBehaviour
         pickUp.PickedUp -= OnPickedUp;
     }
 
-    public void SetProgressBarActive(bool status)
+    public void ShowProgressBar()
     {
-        if (status)
-            _progressGroup.Show();
-        else
-            _progressGroup.Hide();
+        _progressGroup.Show();
+    }
+
+    public void HideProgressBar()
+    {
+        _progressGroup.Hide();
     }
 
     public void ResetProgress()

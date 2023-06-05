@@ -8,8 +8,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Scaler _scaler;
     [SerializeField] private SplineFollower _splineFollower;
     [SerializeField] private Animator _modelAnimator;
-    [SerializeField] private AudioSource _waterDropAudio;
 
+    private const string UP = "Up";
+    private const string DOWN = "Down";
+    
     public event Action SplineEnded;
     public event Action LevelEnded;
 
@@ -33,7 +35,7 @@ public class Player : MonoBehaviour
     private void OnSplineFinished()
     {
         SplineEnded?.Invoke();
-        _modelAnimator.SetTrigger("Up");
+        _modelAnimator.SetTrigger(UP);
         _scaler.ExpandSides();
     }
 
@@ -45,7 +47,7 @@ public class Player : MonoBehaviour
     public void ResetScale()
     {
         _scaler.Reset();
-        _modelAnimator.SetTrigger("Down");
+        _modelAnimator.SetTrigger(DOWN);
     }
 
     public void StartMovement()
@@ -61,7 +63,6 @@ public class Player : MonoBehaviour
     public void OnPickedUp(PickUp pickUp)
     {
         _scaler.IncreaseAllAxis();
-        _waterDropAudio.Play();
         pickUp.PickedUp -= OnPickedUp;
     }
 }
