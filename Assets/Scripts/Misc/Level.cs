@@ -40,11 +40,13 @@ public class Level : MonoBehaviour
         {            
             _pickUpSpawner.UnSpawn();
             _boatSpawner.UnSpawn();
+            _activeSpline.GetComponent<RoadBorders>().Destroy();
             Deleted?.Invoke(_unusedPickUps, _unusedBoats);
             ClearAllCollections();
         }
 
         _activeSpline = _splines.GetRandom();
+        _activeSpline.GetComponent<RoadBorders>().Create();
         _pickUpSpawner.Spawn();
         _boatSpawner.Initialize(_activeSpline);
         _boatSpawner.Spawn();

@@ -1,4 +1,5 @@
 using PathCreation;
+using PathCreation.Examples;
 using System;
 using UnityEngine;
 
@@ -8,13 +9,13 @@ public class SplineFollower : MonoBehaviour
     [SerializeField] private HorizontalInput _horizontalInput;
     [SerializeField] private float _speed = 1.0f;
     [SerializeField] private float _horizontalSpeed = 0.5f;
-    [SerializeField] private float _horizontalBounding = 0.25f;
     [SerializeField] private float _startOffsetForTestingOnly = 0.01f;
     [SerializeField] private float _endingOffset = 0.1f;
 
     private Rigidbody _rigidbody;
     private PathCreator _spline;
     private Vector3 _horizontalPosition;
+    private float _horizontalBounding;
     private bool _canMove = false;
     private float _input;
     private float _distanceTravelled;
@@ -31,6 +32,7 @@ public class SplineFollower : MonoBehaviour
     public void Initialize(PathCreator spline)
     {
         _spline = spline;
+        _horizontalBounding = _spline.GetComponent<RoadMeshCreator>().roadWidth / 2;
         _input = 0.0f;
         _horizontalPosition = Vector3.zero;
         _distanceTravelled = _startOffsetForTestingOnly;
