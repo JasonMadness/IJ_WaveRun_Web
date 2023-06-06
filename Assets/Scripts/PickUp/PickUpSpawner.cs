@@ -1,18 +1,22 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using PathCreation;
+using PathCreation.Examples;
+using System.Linq;
 using Random = UnityEngine.Random;
 
 public class PickUpSpawner : MonoBehaviour
 {
-    [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
     [SerializeField] private PickUpPool _pool;
     [SerializeField] private Transform _particlesContainer;
     [SerializeField] private int _count;
     [SerializeField] private float _step;
-    [SerializeField] private Vector3 _sideOffset;
     [SerializeField] private float _upOffset;
 
+    private PathCreator _activeSpline;
+    private List<PickUpSpawnPoint> _spawnPoints = new();
+    private Vector3 _sideOffset;
     private int _pickUpsCount;
     private Vector3 _currentOffset;
     private float _pickUpValue;
@@ -26,9 +30,19 @@ public class PickUpSpawner : MonoBehaviour
         _pickUpValue = 1.0f / _pickUpsCount;
     }
 
-    public void Spawn()
+    public void Initialize(PathCreator spline)
     {
-        foreach (Transform point in _spawnPoints)
+        if (_activeSpline != null)
+            UnSpawn();
+
+        _activeSpline = spline;
+        _spawnPoints = spline.GetComponentsInChildren<PickUpSpawnPoint>().ToList();
+        Spawn();
+    }
+
+    private void Spawn()
+    {
+        foreach (PickUpSpawnPoint point in _spawnPoints)
         {
             _currentOffset = GetNewOffset();
 
@@ -36,7 +50,7 @@ public class PickUpSpawner : MonoBehaviour
             {
                 PickUp pickUp = _pool.GetGameObject().GetComponent<PickUp>();
                 pickUp.transform.position = point.transform.position + _step * i * Vector3.forward + _currentOffset;
-                pickUp.transform.SetParent(point);
+                pickUp.transform.SetParent(point.transform);
                 LandPosition(pickUp);
                 pickUp.Initialize(_pickUpValue, _particlesContainer);
                 pickUp.gameObject.SetActive(true);
@@ -45,7 +59,7 @@ public class PickUpSpawner : MonoBehaviour
         }
     }
 
-    public void UnSpawn()
+    private void UnSpawn()
     {
         List<GameObject> activePickups = _pool.GetAllActive();
         
@@ -65,9 +79,7 @@ public class PickUpSpawner : MonoBehaviour
 
     private Vector3 GetNewOffset()
     {
-        if (_sideOffset == Vector3.zero)
-            throw new ArgumentException("Side offset cannot be Vector3.zero, infinity loop error");
-
+        _sideOffset = new Vector3(_activeSpline.GetComponent<RoadMeshCreator>().roadWidth / 2, 0.0f, 0.0f);
         Vector3[] posibleOffsets = { -_sideOffset, Vector3.zero, _sideOffset };
         Vector3 offset = posibleOffsets[Random.Range(0, posibleOffsets.Length)];
 

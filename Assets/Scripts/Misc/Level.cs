@@ -41,8 +41,6 @@ public class Level : MonoBehaviour
     {
         if (_activeSpline != null)
         {            
-            _pickUpSpawner.UnSpawn();
-            _boatSpawner.UnSpawn();
             _activeSpline.GetComponent<RoadBorders>().Destroy();            
             Destroy(_roadMesh.GetComponent<MeshCollider>());
             Deleted?.Invoke(_unusedPickUps, _unusedBoats);
@@ -53,9 +51,8 @@ public class Level : MonoBehaviour
         _roadMesh = _activeSpline.transform.Find(ROAD_MESH_HOLDER).gameObject;
         _activeSpline.GetComponent<RoadBorders>().Create();
         _roadMesh.AddComponent<MeshCollider>();
-        _pickUpSpawner.Spawn();
+        _pickUpSpawner.Initialize(_activeSpline);
         _boatSpawner.Initialize(_activeSpline);
-        _boatSpawner.Spawn();
         Created?.Invoke(_activeSpline, _pickUps, _boats);
     }
 
