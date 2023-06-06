@@ -24,19 +24,12 @@ public class PickUpSpawner : MonoBehaviour
     public event Action<PickUp> Spawned;
     public event Action<PickUp> UnSpawned;
 
-    private void Start()
-    {
-        _pickUpsCount = _spawnPoints.Count * _count;
-        _pickUpValue = 1.0f / _pickUpsCount;
-    }
-
-    public void Initialize(PathCreator spline)
-    {
-        if (_activeSpline != null)
-            UnSpawn();
-
+    public void Initialize(PathCreator spline, int difficulty)
+    {        
         _activeSpline = spline;
         _spawnPoints = spline.GetComponentsInChildren<PickUpSpawnPoint>().ToList();
+        _pickUpsCount = _spawnPoints.Count * _count;
+        _pickUpValue = (1.0f / _pickUpsCount) * difficulty;
         Spawn();
     }
 
@@ -59,7 +52,7 @@ public class PickUpSpawner : MonoBehaviour
         }
     }
 
-    private void UnSpawn()
+    public void UnSpawn()
     {
         List<GameObject> activePickups = _pool.GetAllActive();
         

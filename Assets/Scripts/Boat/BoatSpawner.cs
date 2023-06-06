@@ -9,7 +9,6 @@ public class BoatSpawner : MonoBehaviour
     [SerializeField] private BoatPool _pool;
     [SerializeField] private Transform _container;
 
-    private PathCreator _activeSpline;
     private List<BoatSpawnPoint> _spawnPoints;
 
     public event Action<Boat> Spawned;
@@ -17,9 +16,6 @@ public class BoatSpawner : MonoBehaviour
 
     public void Initialize(PathCreator spline)
     {
-        if (_activeSpline != null)
-            UnSpawn();
-
         _spawnPoints = spline.GetComponentsInChildren<BoatSpawnPoint>().ToList();
         Spawn();
     }
@@ -33,7 +29,7 @@ public class BoatSpawner : MonoBehaviour
         }
     }
     
-    private void UnSpawn()
+    public void UnSpawn()
     {
         List<GameObject> activeBoats = _pool.GetAllActive();
         

@@ -37,21 +37,23 @@ public class Level : MonoBehaviour
         _boatSpawner.UnSpawned -= OnBoatUnSpawned;
     }
 
-    public void Create()
+    public void Create(int difficulty)
     {
         if (_activeSpline != null)
         {            
             _activeSpline.GetComponent<RoadBorders>().Destroy();            
             Destroy(_roadMesh.GetComponent<MeshCollider>());
+            _pickUpSpawner.UnSpawn();
+            _boatSpawner.UnSpawn();
             Deleted?.Invoke(_unusedPickUps, _unusedBoats);
             ClearAllCollections();
         }
 
-        _activeSpline = _splines.GetRandom();
+        _activeSpline = _splines.GetRandom(difficulty);
         _roadMesh = _activeSpline.transform.Find(ROAD_MESH_HOLDER).gameObject;
         _activeSpline.GetComponent<RoadBorders>().Create();
         _roadMesh.AddComponent<MeshCollider>();
-        _pickUpSpawner.Initialize(_activeSpline);
+        _pickUpSpawner.Initialize(_activeSpline, difficulty);
         _boatSpawner.Initialize(_activeSpline);
         Created?.Invoke(_activeSpline, _pickUps, _boats);
     }

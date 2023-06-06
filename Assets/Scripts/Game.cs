@@ -6,6 +6,7 @@ public class Game : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private Level _level;
+    [SerializeField] private Difficulty _difficulty;
     [SerializeField] private CameraSwitcher _cameraSwitcher;
     [SerializeField] private Score _score;
     [SerializeField] private TotalScore _totalScore;
@@ -39,7 +40,7 @@ public class Game : MonoBehaviour
 
     public void StartGame()
     {
-        _level.Create();
+        _level.Create(_difficulty.Value);
         _cameraSwitcher.SetStartingPriorities();
         _ui.DeactivateEndScreen();
         _ui.ResetProgress();

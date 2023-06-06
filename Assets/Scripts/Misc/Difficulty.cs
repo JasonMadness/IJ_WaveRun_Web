@@ -2,22 +2,22 @@ using UnityEngine;
 
 public class Difficulty : MonoBehaviour
 {
-    [SerializeField] private Difficulties _difficulties;
-
-    private int _value;
+    private int _value = 1;
 
     public int Value => _value;
 
-    public void SetDifficuly(Difficulties difficulty)
+    public void SetEasy()
     {
-        _value = (int)difficulty;
+        _value = 1;
     }
-}
 
-[System.Serializable]
-public enum Difficulties
-{
-    EASY = 1, 
-    MEDIUM = 2, 
-    HARD = 3
+    public void SetMedium()
+    {
+        _value = 2;
+    }
+
+    public void SetHard()
+    {
+        _value = 3;
+    }
 }
