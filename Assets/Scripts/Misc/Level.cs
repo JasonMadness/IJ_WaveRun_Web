@@ -9,7 +9,10 @@ public class Level : MonoBehaviour
     [SerializeField] private PickUpSpawner _pickUpSpawner;
     [SerializeField] private BoatSpawner _boatSpawner;
 
+    private const string ROAD_MESH_HOLDER = "Road Mesh Holder";
+
     private PathCreator _activeSpline;
+    private GameObject _roadMesh;
     private List<PickUp> _pickUps = new();
     private List<PickUp> _unusedPickUps = new();
     private List<Boat> _boats = new();
@@ -40,13 +43,16 @@ public class Level : MonoBehaviour
         {            
             _pickUpSpawner.UnSpawn();
             _boatSpawner.UnSpawn();
-            _activeSpline.GetComponent<RoadBorders>().Destroy();
+            _activeSpline.GetComponent<RoadBorders>().Destroy();            
+            Destroy(_roadMesh.GetComponent<MeshCollider>());
             Deleted?.Invoke(_unusedPickUps, _unusedBoats);
             ClearAllCollections();
         }
 
         _activeSpline = _splines.GetRandom();
+        _roadMesh = _activeSpline.transform.Find(ROAD_MESH_HOLDER).gameObject;
         _activeSpline.GetComponent<RoadBorders>().Create();
+        _roadMesh.AddComponent<MeshCollider>();
         _pickUpSpawner.Spawn();
         _boatSpawner.Initialize(_activeSpline);
         _boatSpawner.Spawn();
