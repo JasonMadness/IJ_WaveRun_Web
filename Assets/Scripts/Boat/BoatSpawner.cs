@@ -9,19 +9,19 @@ public class BoatSpawner : MonoBehaviour
     [SerializeField] private BoatPool _pool;
     [SerializeField] private Transform _container;
 
-    private List<SpawnPoint> _spawnPoints;
+    private List<BoatSpawnPoint> _spawnPoints;
 
     public event Action<Boat> Spawned;
     public event Action<Boat> UnSpawned;
 
     public void Initialize(PathCreator spline)
     {
-        _spawnPoints = spline.GetComponentsInChildren<SpawnPoint>().ToList();
+        _spawnPoints = spline.GetComponentsInChildren<BoatSpawnPoint>().ToList();
     }
 
     public void Spawn()
     {
-        foreach (SpawnPoint spawnPoint in _spawnPoints)
+        foreach (BoatSpawnPoint spawnPoint in _spawnPoints)
         {
             Boat boat = CreateAndPlace(spawnPoint.transform);
             Spawned?.Invoke(boat);
