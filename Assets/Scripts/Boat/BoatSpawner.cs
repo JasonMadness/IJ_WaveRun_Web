@@ -1,36 +1,52 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using PathCreation;
 using UnityEngine;
 
 public class BoatSpawner : MonoBehaviour
 {
-    [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
-    [SerializeField] private List<Transform> _finishSpawnPoints = new List<Transform>();
-    [SerializeField] private Boat _boat;
-    [SerializeField] private Boat _staticBoat;
+    [SerializeField] private BoatPool _pool;
+    [SerializeField] private Transform _container;
+
+    private List<SpawnPoint> _spawnPoints;
 
     public event Action<Boat> Spawned;
+    public event Action<Boat> UnSpawned;
 
-    public void Instantiate()
+    public void Initialize(PathCreator spline)
     {
-        foreach (Transform point in _spawnPoints)
+        _spawnPoints = spline.GetComponentsInChildren<SpawnPoint>().ToList();
+    }
+
+    public void Spawn()
+    {
+        foreach (SpawnPoint spawnPoint in _spawnPoints)
         {
-            Boat boat = CreateAndPlace(point, _boat);
+            Boat boat = CreateAndPlace(spawnPoint.transform);
             Spawned?.Invoke(boat);
         }
-
-        foreach (Transform point in _finishSpawnPoints)
+    }
+    
+    public void UnSpawn()
+    {
+        List<GameObject> activeBoats = _pool.GetAllActive();
+        
+        foreach (GameObject boat in activeBoats)
         {
-            CreateAndPlace(point, _staticBoat);
+            boat.SetActive(false);
+            UnSpawned?.Invoke(boat.GetComponent<Boat>());
         }
     }
 
-    private Boat CreateAndPlace(Transform point, Boat boat)
+    private Boat CreateAndPlace(Transform point)
     {
-        Boat newBoat = Instantiate(boat);
-        newBoat.transform.position = point.position;
-        newBoat.transform.SetParent(point.transform);
-        newBoat.LandTransform();
-        return newBoat;
+        Boat boat = _pool.GetGameObject().GetComponent<Boat>();
+        boat.transform.position = point.position;
+        boat.transform.SetParent(point.transform);
+        boat.Initialize(_container);
+        boat.LandTransform();
+        boat.gameObject.SetActive(true);
+        return boat;
     }
 }

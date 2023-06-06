@@ -5,10 +5,16 @@ public class Boat : MonoBehaviour
 {
     [SerializeField] private float _upOffset = 0.1f;
     [SerializeField] private float _sideOffset = 0.1f;
-    [SerializeField] private bool _needNormalFromRaycast;
     [SerializeField] private BoatFragmented _prefab;
 
+    private Transform _container;
+
     public event Action<Boat> Destroyed;
+
+    public void Initialize(Transform container)
+    {
+        _container = container;
+    }
 
     public void LandTransform()
     {
@@ -16,11 +22,7 @@ public class Boat : MonoBehaviour
         Physics.Raycast(ray, out RaycastHit hit);
         Vector3 upOffset = Vector3.up * _upOffset;
         Vector3 sideOffset = GetRandomSideOffset();
-        transform.position = hit.point;
-
-        if (_needNormalFromRaycast)
-            transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-            
+        transform.SetPositionAndRotation(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
         transform.position += upOffset + sideOffset;
     }
 
@@ -34,11 +36,11 @@ public class Boat : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<Player>(out _))
         {
-            gameObject.SetActive(false);
             BoatFragmented boat = Instantiate(_prefab, transform.position, transform.rotation);
+            boat.transform.SetParent(_container);
             boat.Explode();
             Destroyed?.Invoke(this);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

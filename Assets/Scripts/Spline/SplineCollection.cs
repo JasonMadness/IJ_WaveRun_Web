@@ -1,23 +1,22 @@
-using PathCreation;
 using System.Collections.Generic;
+using PathCreation;
 using UnityEngine;
 
-public class SplineGetter : MonoBehaviour
+public class SplineCollection : MonoBehaviour
 {
     [SerializeField] private List<PathCreator> _splines = new List<PathCreator>();
-
-    private PathCreator _activeSpline = null;
+    
     private int _activeSplineIndex = -1;
 
     public PathCreator GetRandomSpline()
     {
-        DeactivateAllActiveSplines();
-        _activeSpline = _splines[GetNewIndex()];
-        _activeSpline.gameObject.SetActive(true);
-        return _activeSpline;
-    }
+        DeactivateAll();
+        PathCreator spline = _splines[GetNewIndex()];
+        spline.gameObject.SetActive(true);
+        return spline;
+    }    
 
-    private void DeactivateAllActiveSplines()
+    private void DeactivateAll()
     {
         foreach (PathCreator spline in _splines)
             spline.gameObject.SetActive(false);

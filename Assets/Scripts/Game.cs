@@ -1,12 +1,11 @@
 using PathCreation;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Game : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private SplineGetter _splineGetter;
-    [SerializeField] private PickUpSpawner _pickUpSpawner;
-    [SerializeField] private BoatSpawner _boatSpawner;
+    [SerializeField] private Level _level;
     [SerializeField] private CameraSwitcher _cameraSwitcher;
     [SerializeField] private Score _score;
     [SerializeField] private TotalScore _totalScore;
@@ -15,19 +14,11 @@ public class Game : MonoBehaviour
     [SerializeField] private Timer _startingTimer;
     [SerializeField] private Ending _ending;
 
-    private void Start()
-    {
-        _ui.Initialize();
-        _audio.PlayMainMenuTheme();
-    }
-
     private void OnEnable()
     {
         _player.SplineEnded += BeginFinishCutscene;
+        _level.Created += OnLevelCreated;
         _startingTimer.Stopped += OnStartingTimerStopped;
-        _pickUpSpawner.Spawned += OnPickUpSpawned;
-        _pickUpSpawner.UnSpawned += OnPickUpUnSpawned;
-        _boatSpawner.Spawned += OnBoatSpawned;
         _ending.GameEnded += _ui.OnGameEnded;
         _ending.GameEnded += OnGameEnded;
     }
@@ -36,29 +27,20 @@ public class Game : MonoBehaviour
     {
         _player.SplineEnded -= BeginFinishCutscene;
         _startingTimer.Stopped -= OnStartingTimerStopped;
-        _pickUpSpawner.Spawned -= OnPickUpSpawned;
-        _pickUpSpawner.UnSpawned -= OnPickUpUnSpawned;
-        _boatSpawner.Spawned -= OnBoatSpawned;
         _ending.GameEnded -= _ui.OnGameEnded;
         _ending.GameEnded -= OnGameEnded;
     }
 
-    public void StartNewGame()
+    private void Start()
     {
-        InitializeSpline();
-        InitializeSpawners();
-        _ui.ResetProgress();
-        _score.Reset();
-        _cameraSwitcher.SetStartingPriorities();
-        _startingTimer.Initialize();
+        _ui.Initialize();
+        _audio.PlayMainMenuTheme();
     }
 
-    public void StartNextLevel()
+    public void StartGame()
     {
+        _level.Create();
         _cameraSwitcher.SetStartingPriorities();
-        _pickUpSpawner.UnSpawn();
-        InitializeSpline();
-        InitializeSpawners();
         _ui.DeactivateEndScreen();
         _ui.ResetProgress();
         _score.Reset();
@@ -66,37 +48,38 @@ public class Game : MonoBehaviour
         _startingTimer.Initialize();
     }
 
-    private void InitializeSpline()
+    private void OnLevelCreated(PathCreator spline, List<PickUp> pickUps, List<Boat> boats)
     {
-        PathCreator spline = _splineGetter.GetRandomSpline();
         _player.Initialize(spline);
+
+        foreach (PickUp pickUp in pickUps)
+        {
+            pickUp.PickedUp += _player.OnPickedUp;
+            pickUp.PickedUp += _ui.OnPickedUp;
+            pickUp.PickedUp += _score.OnPickedUp;
+            pickUp.PickedUp += _audio.OnPickedUp;
+        }            
+
+        foreach (Boat boat in boats)
+        {
+            boat.Destroyed += _score.OnBoatDestroyed;
+        }
     }
 
-    private void InitializeSpawners()
+    private void OnLevelDeleted(List<PickUp> pickUps, List<Boat> boats)
     {
-        _pickUpSpawner.Spawn();
-        _boatSpawner.Instantiate();
-    }
+        foreach (PickUp pickUp in pickUps)
+        {
+            pickUp.PickedUp -= _player.OnPickedUp;
+            pickUp.PickedUp -= _ui.OnPickedUp;
+            pickUp.PickedUp -= _score.OnPickedUp;
+            pickUp.PickedUp -= _audio.OnPickedUp;
+        }            
 
-    private void OnPickUpSpawned(PickUp pickUp)
-    {
-        pickUp.PickedUp += _player.OnPickedUp;
-        pickUp.PickedUp += _ui.OnPickedUp;
-        pickUp.PickedUp += _score.OnPickedUp;
-        pickUp.PickedUp += _audio.OnPickedUp;
-    }
-
-    private void OnBoatSpawned(Boat boat)
-    {
-        boat.Destroyed += _score.OnBoatDestroyed;
-    }
-
-    private void OnPickUpUnSpawned(PickUp pickUp)
-    {
-        pickUp.PickedUp -= _player.OnPickedUp;
-        pickUp.PickedUp -= _ui.OnPickedUp;
-        pickUp.PickedUp -= _score.OnPickedUp;
-        pickUp.PickedUp -= _audio.OnPickedUp;
+        foreach (Boat boat in boats)
+        {
+            boat.Destroyed -= _score.OnBoatDestroyed;
+        }
     }
 
     private void OnStartingTimerStopped()
@@ -107,7 +90,6 @@ public class Game : MonoBehaviour
 
     private void BeginFinishCutscene()
     {
-        _pickUpSpawner.UnSpawn();
         _ending.Initialize();
         _ui.HideProgressBar();
     }

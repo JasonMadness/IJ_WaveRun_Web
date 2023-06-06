@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 public class PickUpSpawner : MonoBehaviour
 {
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
-    [SerializeField] private PickUpPool _pickUpPool;
+    [SerializeField] private PickUpPool _pool;
     [SerializeField] private Transform _particlesContainer;
     [SerializeField] private int _count;
     [SerializeField] private float _step;
@@ -34,7 +34,7 @@ public class PickUpSpawner : MonoBehaviour
 
             for (int i = 0; i < _count; i++)
             {
-                PickUp pickUp = _pickUpPool.GetPickUp();
+                PickUp pickUp = _pool.GetGameObject().GetComponent<PickUp>();
                 pickUp.transform.position = point.transform.position + _step * i * Vector3.forward + _currentOffset;
                 pickUp.transform.SetParent(point);
                 LandPosition(pickUp);
@@ -47,12 +47,12 @@ public class PickUpSpawner : MonoBehaviour
 
     public void UnSpawn()
     {
-        List<PickUp> activePickups = _pickUpPool.GetAllActive();
+        List<GameObject> activePickups = _pool.GetAllActive();
         
-        foreach (PickUp pickUp in activePickups)
+        foreach (GameObject pickup in activePickups)
         {
-            pickUp.gameObject.SetActive(false);
-            UnSpawned?.Invoke(pickUp);
+            pickup.SetActive(false);
+            UnSpawned?.Invoke(pickup.GetComponent<PickUp>());
         }
     }
 
