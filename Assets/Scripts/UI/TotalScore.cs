@@ -25,8 +25,6 @@ public class TotalScore : MonoBehaviour
 
     public void StartIncreasing(int value)
     {
-        int totalScore = _score + value;
-        PlayerPrefs.SetInt(SCORE, totalScore);
         StartCoroutine(Increase(value));
     }
 
@@ -44,6 +42,8 @@ public class TotalScore : MonoBehaviour
             UpdateUI();
             yield return delay;
         }
+        
+        PlayerPrefs.SetInt(SCORE, _score);
     }
 
     private void UpdateUI()
