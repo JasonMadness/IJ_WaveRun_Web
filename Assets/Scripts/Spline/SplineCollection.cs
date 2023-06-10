@@ -10,13 +10,12 @@ public class SplineCollection : MonoBehaviour
 
     public PathCreator GetRandomSpline()
     {
-        DeactivateAll();
         PathCreator spline = _splines[GetNewIndex()];
         spline.gameObject.SetActive(true);
         return spline;
     }    
 
-    private void DeactivateAll()
+    public void DeactivateCollection()
     {
         foreach (PathCreator spline in _splines)
             spline.gameObject.SetActive(false);

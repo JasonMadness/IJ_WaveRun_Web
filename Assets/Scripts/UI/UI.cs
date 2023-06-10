@@ -15,7 +15,7 @@ public class UI : MonoBehaviour
     {
         _endScreen.gameObject.SetActive(false);
     }
-
+    
     public void OnPickedUp(PickUp pickUp)
     {
         _progressGroup.Increase(pickUp.Value);
@@ -32,9 +32,9 @@ public class UI : MonoBehaviour
         _progressGroup.Hide();
     }
 
-    public void ResetProgress()
+    public void ResetProgress(float maxProgress)
     {
-        _progressGroup.ResetProgress();
+        _progressGroup.ResetProgress(maxProgress);
     }
 
     public void OnGameEnded()

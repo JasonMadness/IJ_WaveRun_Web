@@ -86,6 +86,26 @@ MonoBehaviour:
     m_Localized: "MA\u011EAZA"
     m_Metadata:
       m_Items: []
+  - m_Id: 5339364486049792
+    m_Localized: ZORLUK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5354298351579136
+    m_Localized: "YOL UZUNLU\u011EUNU SE\xC7\u0130N"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5387891983544320
+    m_Localized: KOLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5388147081113600
+    m_Localized: ORTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5388544449474560
+    m_Localized: ZOR
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

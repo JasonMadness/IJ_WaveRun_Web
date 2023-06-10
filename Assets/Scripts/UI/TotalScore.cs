@@ -11,7 +11,7 @@ public class TotalScore : MonoBehaviour
     private int _score;
     private int _additionValue;
     private float _delayBeforeCalculations = 1.0f;
-    private float _calculationTime = 2.0f;
+    private float _calculationTime = 1.0f;
 
     private void Start()
     {

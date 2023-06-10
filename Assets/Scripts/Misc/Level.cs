@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEditor;
 using System;
 using System.Collections.Generic;
 using PathCreation;
+using PathCreation.Examples;
 
 public class Level : MonoBehaviour
 {    
@@ -50,12 +52,19 @@ public class Level : MonoBehaviour
         }
 
         _activeSpline = _splines.GetRandom(difficulty);
+        _activeSpline.GetComponent<RoadMeshCreator>().ForceMeshUpdate();
+        SceneView.RepaintAll();
         _roadMesh = _activeSpline.transform.Find(ROAD_MESH_HOLDER).gameObject;
         _activeSpline.GetComponent<RoadBorders>().Create();
         _roadMesh.AddComponent<MeshCollider>();
-        _pickUpSpawner.Initialize(_activeSpline, difficulty);
+        _pickUpSpawner.Initialize(_activeSpline);
         _boatSpawner.Initialize(_activeSpline);
         Created?.Invoke(_activeSpline, _pickUps, _boats);
+    }
+
+    public float GetTotalPickUpsValue()
+    {
+        return _pickUpSpawner.PickUpsTotalValue;
     }
 
     private void OnPickUpSpawned(PickUp pickUp)

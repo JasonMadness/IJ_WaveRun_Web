@@ -83,6 +83,26 @@ MonoBehaviour:
     m_Key: Button_Shop
     m_Metadata:
       m_Items: []
+  - m_Id: 5339364486049792
+    m_Key: Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5354298351579136
+    m_Key: ChooseLengthLabel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5387891983544320
+    m_Key: Difficulty_Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5388147081113600
+    m_Key: Difficulty_Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5388544449474560
+    m_Key: Difficulty_Hard
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

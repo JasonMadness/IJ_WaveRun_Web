@@ -19,6 +19,7 @@ public class Game : MonoBehaviour
     {
         _player.SplineEnded += BeginFinishCutscene;
         _level.Created += OnLevelCreated;
+        _level.Deleted += OnLevelDeleted;
         _startingTimer.Stopped += OnStartingTimerStopped;
         _ending.GameEnded += _ui.OnGameEnded;
         _ending.GameEnded += OnGameEnded;
@@ -27,6 +28,8 @@ public class Game : MonoBehaviour
     private void OnDisable()
     {
         _player.SplineEnded -= BeginFinishCutscene;
+        _level.Created -= OnLevelCreated;
+        _level.Deleted -= OnLevelDeleted;
         _startingTimer.Stopped -= OnStartingTimerStopped;
         _ending.GameEnded -= _ui.OnGameEnded;
         _ending.GameEnded -= OnGameEnded;
@@ -43,8 +46,8 @@ public class Game : MonoBehaviour
         _level.Create(_difficulty.Value);
         _cameraSwitcher.SetStartingPriorities();
         _ui.DeactivateEndScreen();
-        _ui.ResetProgress();
-        _score.Reset();
+        _ui.ResetProgress(_level.GetTotalPickUpsValue());
+        _score.Reset(_difficulty.Value);
         _player.ResetScale();
         _startingTimer.Initialize();
     }

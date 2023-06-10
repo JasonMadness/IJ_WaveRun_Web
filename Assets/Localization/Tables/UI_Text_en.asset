@@ -86,6 +86,26 @@ MonoBehaviour:
     m_Localized: SHOP
     m_Metadata:
       m_Items: []
+  - m_Id: 5339364486049792
+    m_Localized: DIFFICULTY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5354298351579136
+    m_Localized: CHOOSE ROAD LENGTH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5387891983544320
+    m_Localized: EASY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5388147081113600
+    m_Localized: MEDIUM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5388544449474560
+    m_Localized: HARD
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

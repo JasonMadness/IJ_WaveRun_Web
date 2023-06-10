@@ -20,16 +20,20 @@ public class PickUpSpawner : MonoBehaviour
     private int _pickUpsCount;
     private Vector3 _currentOffset;
     private float _pickUpValue;
+    private float _totalValue;
+
+    public float PickUpsTotalValue => _totalValue;
 
     public event Action<PickUp> Spawned;
     public event Action<PickUp> UnSpawned;
 
-    public void Initialize(PathCreator spline, int difficulty)
+    public void Initialize(PathCreator spline)
     {        
         _activeSpline = spline;
         _spawnPoints = spline.GetComponentsInChildren<PickUpSpawnPoint>().ToList();
         _pickUpsCount = _spawnPoints.Count * _count;
-        _pickUpValue = (1.0f / _pickUpsCount) * difficulty;
+        _pickUpValue = (1.0f / _pickUpsCount);
+        _totalValue = _pickUpValue * _pickUpsCount;
         Spawn();
     }
 
@@ -72,12 +76,12 @@ public class PickUpSpawner : MonoBehaviour
 
     private Vector3 GetNewOffset()
     {
-        _sideOffset = new Vector3(_activeSpline.GetComponent<RoadMeshCreator>().roadWidth / 2, 0.0f, 0.0f);
-        Vector3[] posibleOffsets = { -_sideOffset, Vector3.zero, _sideOffset };
-        Vector3 offset = posibleOffsets[Random.Range(0, posibleOffsets.Length)];
+        _sideOffset = new Vector3(_activeSpline.GetComponent<RoadMeshCreator>().roadWidth / 1.8f, 0.0f, 0.0f);
+        Vector3[] possibleOffsets = { -_sideOffset, Vector3.zero, _sideOffset };
+        Vector3 offset = possibleOffsets[Random.Range(0, possibleOffsets.Length)];
 
         while (offset == _currentOffset)
-            offset = posibleOffsets[Random.Range(0, posibleOffsets.Length)];
+            offset = possibleOffsets[Random.Range(0, possibleOffsets.Length)];
 
         return offset;
     }

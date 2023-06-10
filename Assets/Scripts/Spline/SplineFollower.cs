@@ -32,7 +32,7 @@ public class SplineFollower : MonoBehaviour
     public void Initialize(PathCreator spline)
     {
         _spline = spline;
-        _horizontalBounding = _spline.GetComponent<RoadMeshCreator>().roadWidth / 2;
+        _horizontalBounding = _spline.GetComponent<RoadMeshCreator>().roadWidth / 1.5f;
         _input = 0.0f;
         _horizontalPosition = Vector3.zero;
         _distanceTravelled = _startOffsetForTestingOnly;

@@ -10,13 +10,15 @@ public class Score : MonoBehaviour
     private int _dropsCount;
     private int _boatsCount;
     private int _levelScore;
+    private int _difficulty;
 
     public int LevelScore => _levelScore;
 
-    public void Reset()
+    public void Reset(int difficulty)
     {
         _dropsCount = 0;
         _boatsCount = 0;
+        _difficulty = difficulty;
         SetScore();
     }
 
@@ -38,7 +40,7 @@ public class Score : MonoBehaviour
     {
         _drops.text = _dropsCount.ToString();
         _boats.text = _boatsCount.ToString();
-        _levelScore = _dropsCount * _boatsCount;
+        _levelScore = _dropsCount * _boatsCount * _difficulty;
         _score.text = _levelScore.ToString();
     }
 }

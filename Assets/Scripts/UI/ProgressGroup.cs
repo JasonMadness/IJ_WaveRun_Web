@@ -40,10 +40,11 @@ public class ProgressGroup : MonoBehaviour
         _animator.SetTrigger(HIDE);
     }
 
-    public void ResetProgress()
+    public void ResetProgress(float barMaxValue)
     {
         _index = 0;
         _bar.value = 0.0f;
+        _bar.maxValue = barMaxValue;
         _targetValue = 0.0f;
         _needToUpdate = false;
         UpdateUI();
