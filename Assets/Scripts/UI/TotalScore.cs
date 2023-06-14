@@ -7,6 +7,8 @@ public class TotalScore : MonoBehaviour
     [SerializeField] private TMP_Text _text;
 
     private const string SCORE = "Score";
+
+    private IO_Score _io = new IO_Score();
     
     private int _score;
     private int _additionValue;
@@ -15,16 +17,13 @@ public class TotalScore : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey(SCORE))
-            _score = PlayerPrefs.GetInt(SCORE);
-        else
-            _score = 0;
-            
+        _io.Load(out _score);            
         UpdateUI();
     }
 
     public void StartIncreasing(int value)
     {
+        _io.Save(_score + value);
         StartCoroutine(Increase(value));
     }
 
@@ -42,15 +41,16 @@ public class TotalScore : MonoBehaviour
             UpdateUI();
             yield return delay;
         }
-        
-        PlayerPrefs.SetInt(SCORE, _score);
     }
 
     private void UpdateUI()
     {
-        if (_additionValue > 0)
-            _text.text = $"{_score} + <color=green>{_additionValue}</color>";
-        else
-            _text.text = _score.ToString();
+        if (_text.gameObject.activeSelf)
+        {
+            if (_additionValue > 0)
+                _text.text = $"{_score} + <color=green>{_additionValue}</color>";
+            else
+                _text.text = _score.ToString();
+        }        
     }
 }
