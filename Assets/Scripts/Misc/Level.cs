@@ -10,6 +10,7 @@ public class Level : MonoBehaviour
     [SerializeField] private Splines _splines;
     [SerializeField] private PickUpSpawner _pickUpSpawner;
     [SerializeField] private BoatSpawner _boatSpawner;
+    [SerializeField] private Finish _finish;
 
     private const string ROAD_MESH_HOLDER = "Road Mesh Holder";
 
@@ -59,6 +60,7 @@ public class Level : MonoBehaviour
         _roadMesh.AddComponent<MeshCollider>();
         _pickUpSpawner.Initialize(_activeSpline);
         _boatSpawner.Initialize(_activeSpline);
+        _finish.SpawnBoats();
         Created?.Invoke(_activeSpline, _pickUps, _boats);
     }
 

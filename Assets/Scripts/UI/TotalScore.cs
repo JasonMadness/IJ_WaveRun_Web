@@ -15,9 +15,9 @@ public class TotalScore : MonoBehaviour
     private float _delayBeforeCalculations = 1.0f;
     private float _calculationTime = 1.0f;
 
-    private void Start()
+    private void OnEnable()
     {
-        _io.Load(out _score);            
+        _io.Load(out _score);          
         UpdateUI();
     }
 

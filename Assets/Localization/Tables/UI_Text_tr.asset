@@ -91,7 +91,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5354298351579136
-    m_Localized: "YOL UZUNLU\u011EUNU SE\xC7\u0130N"
+    m_Localized: "YOL SE\xC7ENEKLER\u0130N\u0130 SE\xC7\u0130N"
     m_Metadata:
       m_Items: []
   - m_Id: 5387891983544320
@@ -104,6 +104,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5388544449474560
     m_Localized: ZOR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8685291921252352
+    m_Localized: UZUNLUK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8685674861207552
+    m_Localized: KISA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8686295769194496
+    m_Localized: UZUN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8690204432703488
+    m_Localized: "KO\u015EMAYA BA\u015ELA\r"
     m_Metadata:
       m_Items: []
   references:

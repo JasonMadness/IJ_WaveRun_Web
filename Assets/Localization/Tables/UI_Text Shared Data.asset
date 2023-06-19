@@ -103,6 +103,22 @@ MonoBehaviour:
     m_Key: Difficulty_Hard
     m_Metadata:
       m_Items: []
+  - m_Id: 8685291921252352
+    m_Key: Length
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8685674861207552
+    m_Key: Short
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8686295769194496
+    m_Key: Long
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8690204432703488
+    m_Key: StartRun
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
