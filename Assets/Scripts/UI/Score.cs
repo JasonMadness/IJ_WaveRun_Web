@@ -11,6 +11,7 @@ public class Score : MonoBehaviour
     private int _boatsCount;
     private int _levelScore;
     private int _difficulty;
+    private int _bonusCoefficient;
 
     public int LevelScore => _levelScore;
 
@@ -18,6 +19,7 @@ public class Score : MonoBehaviour
     {
         _dropsCount = 0;
         _boatsCount = 0;
+        _bonusCoefficient = 0;
         _difficulty = difficulty;
         SetScore();
     }
@@ -34,6 +36,11 @@ public class Score : MonoBehaviour
         boat.Destroyed -= OnBoatDestroyed;
         _boatsCount++;
         SetScore();
+    }
+
+    public void OnBonusBoatDestroyed()
+    {
+        _bonusCoefficient++;
     }
 
     private void SetScore()

@@ -19,9 +19,10 @@ public class Level : MonoBehaviour
     private List<PickUp> _pickUps = new();
     private List<PickUp> _unusedPickUps = new();
     private List<Boat> _boats = new();
+    private List<Boat> _finishBoats = new();
     private List<Boat> _unusedBoats = new();
 
-    public event Action<PathCreator, List<PickUp>, List<Boat>> Created;
+    public event Action<PathCreator, List<PickUp>, List<Boat>, List<Boat>> Created;
     public event Action<List<PickUp>, List<Boat>> Deleted;
 
     private void OnEnable()
@@ -30,6 +31,7 @@ public class Level : MonoBehaviour
         _pickUpSpawner.UnSpawned += OnPickUpUnspawned;
         _boatSpawner.Spawned += OnBoatSpawned;
         _boatSpawner.UnSpawned += OnBoatUnSpawned;
+        _finish.FinishBoatsSpawned += OnFinishBoatsSpawned;
     }
 
     private void OnDisable()
@@ -38,6 +40,7 @@ public class Level : MonoBehaviour
         _pickUpSpawner.UnSpawned -= OnPickUpUnspawned;
         _boatSpawner.Spawned -= OnBoatSpawned;
         _boatSpawner.UnSpawned -= OnBoatUnSpawned;
+        _finish.FinishBoatsSpawned -= OnFinishBoatsSpawned;
     }
 
     public void Create(int difficulty)
@@ -61,7 +64,7 @@ public class Level : MonoBehaviour
         _pickUpSpawner.Initialize(_activeSpline);
         _boatSpawner.Initialize(_activeSpline);
         _finish.SpawnBoats();
-        Created?.Invoke(_activeSpline, _pickUps, _boats);
+        Created?.Invoke(_activeSpline, _pickUps, _boats, _finishBoats);
     }
 
     public float GetTotalPickUpsValue()
@@ -87,6 +90,11 @@ public class Level : MonoBehaviour
     private void OnBoatUnSpawned(Boat boat)
     {
         _unusedBoats.Add(boat);
+    }
+
+    private void OnFinishBoatsSpawned(List<Boat> boats)
+    {
+        _finishBoats = boats;
     }
 
     private void ClearAllCollections()

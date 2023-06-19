@@ -52,7 +52,7 @@ public class Game : MonoBehaviour
         _startingTimer.Initialize();
     }
 
-    private void OnLevelCreated(PathCreator spline, List<PickUp> pickUps, List<Boat> boats)
+    private void OnLevelCreated(PathCreator spline, List<PickUp> pickUps, List<Boat> boats, List<Boat> finishBoats)
     {
         _player.Initialize(spline);
 
@@ -67,6 +67,11 @@ public class Game : MonoBehaviour
         foreach (Boat boat in boats)
         {
             boat.Destroyed += _score.OnBoatDestroyed;
+        }
+
+        foreach (Boat finishBoat in finishBoats)
+        {
+            finishBoat.GetComponent<FinishBonus>().Destroyed += _score.OnBonusBoatDestroyed;
         }
     }
 
