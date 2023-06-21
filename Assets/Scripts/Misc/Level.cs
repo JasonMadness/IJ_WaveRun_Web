@@ -57,7 +57,6 @@ public class Level : MonoBehaviour
 
         _activeSpline = _splines.GetRandom(difficulty);
         _activeSpline.GetComponent<RoadMeshCreator>().ForceMeshUpdate();
-        SceneView.RepaintAll();
         _roadMesh = _activeSpline.transform.Find(ROAD_MESH_HOLDER).gameObject;
         _activeSpline.GetComponent<RoadBorders>().Create();
         _roadMesh.AddComponent<MeshCollider>();
