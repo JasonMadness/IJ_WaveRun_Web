@@ -1,7 +1,5 @@
 using UnityEngine;
-using PathCreation;
 using PathCreation.Examples;
-using PathCreationEditor;
 
 [RequireComponent(typeof(RoadMeshCreator))]
 public class RoadBorders : MonoBehaviour
