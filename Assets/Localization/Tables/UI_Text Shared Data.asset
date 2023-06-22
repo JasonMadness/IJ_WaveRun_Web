@@ -119,6 +119,26 @@ MonoBehaviour:
     m_Key: StartRun
     m_Metadata:
       m_Items: []
+  - m_Id: 9778100711497728
+    m_Key: GameGoal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9783078859612160
+    m_Key: A Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9783747758825472
+    m_Key: D Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9784419686326272
+    m_Key: Mouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9784746527465472
+    m_Key: Finish
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -122,6 +122,26 @@ MonoBehaviour:
     m_Localized: START RUN
     m_Metadata:
       m_Items: []
+  - m_Id: 9778100711497728
+    m_Localized: THE GOAL OF THE GAME IS TO SCORE AS MANY POINTS AS POSSIBLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9783078859612160
+    m_Localized: "USE \n\"A\" KEY \nTO MOVE LEFT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9783747758825472
+    m_Localized: "USE \n\"D\" KEY \nTO MOVE LEFT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9784419686326272
+    m_Localized: CLICK AND HOLD MOUSE ON THE DESIRED HALF OF THE SCREEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9784746527465472
+    m_Localized: REACH FINISH TO EARN BONUS MULTIPLIER
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -122,6 +122,28 @@ MonoBehaviour:
     m_Localized: "KO\u015EMAYA BA\u015ELA\r"
     m_Metadata:
       m_Items: []
+  - m_Id: 9778100711497728
+    m_Localized: "OYUNUN AMACI, M\xDCMK\xDCN OLDU\u011EU KADAR PUAN TOPLAMAKTIR."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9783078859612160
+    m_Localized: "SOLA HAREKET ETMEK \u0130\xC7\u0130N \"A\" TU\u015EUNU KULLANIN\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9783747758825472
+    m_Localized: "SOLA HAREKET ETMEK \u0130\xC7\u0130N \"D\" TU\u015EUNU KULLANIN\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9784419686326272
+    m_Localized: "EKRANIN \u0130STEN\u0130LEN YARISI \xDCZER\u0130NDE FARE TIKLAYIN
+      VE TUTUN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9784746527465472
+    m_Localized: "BONUS \xC7ARPANI KAZANMAK \u0130\xC7\u0130N F\u0130N\u0130\u015EE
+      ULA\u015EIN"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
