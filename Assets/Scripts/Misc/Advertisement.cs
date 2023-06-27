@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Agava.YandexGames;
 using UnityEngine;
 
 public class Advertisement : MonoBehaviour
@@ -7,7 +6,7 @@ public class Advertisement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        YandexGamesSdk.Initialize();
     }
 
     // Update is called once per frame

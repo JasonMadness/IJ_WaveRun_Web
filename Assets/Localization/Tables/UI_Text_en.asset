@@ -142,6 +142,12 @@ MonoBehaviour:
     m_Localized: REACH FINISH TO EARN BONUS MULTIPLIER
     m_Metadata:
       m_Items: []
+  - m_Id: 11594456847130624
+    m_Localized: 'GET
+
+      BONUS'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

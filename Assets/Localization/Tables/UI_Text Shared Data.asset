@@ -139,6 +139,10 @@ MonoBehaviour:
     m_Key: Finish
     m_Metadata:
       m_Items: []
+  - m_Id: 11594456847130624
+    m_Key: GetBonus
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
