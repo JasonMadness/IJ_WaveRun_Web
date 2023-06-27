@@ -64,6 +64,7 @@ public class Level : MonoBehaviour
         _pickUpSpawner.Initialize(_activeSpline);
         _boatSpawner.Initialize(_activeSpline);
         _finish.SpawnBoats();
+        SubscribeBonus();
         _bonus.Reset();
         Created?.Invoke(_activeSpline, _pickUps, _boats, _finishBoats);
     }
