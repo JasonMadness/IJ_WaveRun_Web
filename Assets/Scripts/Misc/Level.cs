@@ -11,6 +11,7 @@ public class Level : MonoBehaviour
     [SerializeField] private PickUpSpawner _pickUpSpawner;
     [SerializeField] private BoatSpawner _boatSpawner;
     [SerializeField] private Finish _finish;
+    [SerializeField] private Bonus _bonus;
 
     private const string ROAD_MESH_HOLDER = "Road Mesh Holder";
 
@@ -63,6 +64,7 @@ public class Level : MonoBehaviour
         _pickUpSpawner.Initialize(_activeSpline);
         _boatSpawner.Initialize(_activeSpline);
         _finish.SpawnBoats();
+        _bonus.Reset();
         Created?.Invoke(_activeSpline, _pickUps, _boats, _finishBoats);
     }
 
@@ -94,6 +96,12 @@ public class Level : MonoBehaviour
     private void OnFinishBoatsSpawned(List<Boat> boats)
     {
         _finishBoats = boats;
+    }
+
+    private void SubscribeBonus()
+    {
+        foreach(Boat boat in _finishBoats)
+            boat.GetComponent<FinishBonus>().Destroyed += _bonus.OnFinishBoatDestroyed;
     }
 
     private void ClearAllCollections()
