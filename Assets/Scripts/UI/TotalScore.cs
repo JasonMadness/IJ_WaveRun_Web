@@ -15,6 +15,8 @@ public class TotalScore : MonoBehaviour
     private float _delayBeforeCalculations = 1.0f;
     private float _calculationTime = 1.0f;
 
+    public int BonusValue;
+
     private void OnEnable()
     {
         _io.Load(out _score);          
@@ -30,6 +32,7 @@ public class TotalScore : MonoBehaviour
     private IEnumerator Increase(int value)
     {
         _additionValue = value;
+        BonusValue = value;
         UpdateUI();
         yield return new WaitForSeconds(_delayBeforeCalculations);
         WaitForSeconds delay = new WaitForSeconds(_calculationTime / _additionValue);
