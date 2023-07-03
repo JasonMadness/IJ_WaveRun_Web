@@ -150,6 +150,10 @@ MonoBehaviour:
       AL'
     m_Metadata:
       m_Items: []
+  - m_Id: 12316218568253440
+    m_Localized: "L\u0130DERLER SIRALAMASI"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

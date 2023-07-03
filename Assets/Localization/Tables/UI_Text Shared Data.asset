@@ -143,6 +143,10 @@ MonoBehaviour:
     m_Key: GetBonus
     m_Metadata:
       m_Items: []
+  - m_Id: 12316218568253440
+    m_Key: LeaderBoard
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

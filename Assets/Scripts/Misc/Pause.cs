@@ -7,6 +7,7 @@ public class Pause : MonoBehaviour
     [SerializeField] private Audio _audio;
 
     private bool _paused = false;
+    private bool _buttonClicked = false;
 
     public void PauseGame()
     {
@@ -24,18 +25,27 @@ public class Pause : MonoBehaviour
 
     public void OnPauseButtonClicked()
     {
-        if (_paused)
+        if (_paused && _buttonClicked)
+        {
             UnPause();
+            _buttonClicked = false;
+        }
         else
+        {
             PauseGame();
+            _buttonClicked = true;
+        }
     }
 
     private void OnApplicationFocus(bool hasFocus)
     {
         if (hasFocus == false)
+        {
             PauseGame();
-        else
+        }
+        else if (_buttonClicked == false)
+        {
             UnPause();
-
+        }
     }
 }
