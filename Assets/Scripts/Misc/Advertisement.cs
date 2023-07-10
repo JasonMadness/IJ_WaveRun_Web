@@ -6,6 +6,7 @@ public class Advertisement : MonoBehaviour
 {
     [SerializeField] private TotalScore _totalScore;
     public testing _testing;
+    public TMPro.TMP_Text conTest;
 
     /*private void Start()
     {
@@ -24,6 +25,8 @@ public class Advertisement : MonoBehaviour
 #endif
 
         yield return YandexGamesSdk.Initialize();
+
+        conTest.text += " Connected";
     }
 
     public void ShowAd()
@@ -33,9 +36,7 @@ public class Advertisement : MonoBehaviour
 
     private void Reward()
     {
-        _testing.setWatched("!");
         int bonusScore = _totalScore.BonusValue * 5;
         _totalScore.StartIncreasing(bonusScore);
-        _testing.setScore(bonusScore.ToString());
     }
 }
