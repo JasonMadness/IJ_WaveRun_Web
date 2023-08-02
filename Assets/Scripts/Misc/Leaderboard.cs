@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class Leaderboard : MonoBehaviour
 {
-    private void Start()
+    /*private void Start()
     {
         YandexGamesSdk.Initialize();
     }
 
-    /*public void OnGetLeaderboardEntriesButtonClick()
+    public void OnGetLeaderboardEntriesButtonClick()
         {
             Leaderboard.GetEntries("PlaytestBoard", (result) =>
             {
@@ -22,4 +22,5 @@ public class Leaderboard : MonoBehaviour
                 }
             });
         }*/
+    
 }

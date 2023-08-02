@@ -20,12 +20,19 @@ namespace Agava.YandexGames.Samples
         [SerializeField]
         private InputField _cloudSaveDataInputField;
 
-        private void Awake()
+        /*private void Awake()
         {
             YandexGamesSdk.CallbackLogging = true;
+        }*/
+
+        private void OnEnable()
+        {
+            YandexGamesSdk.CallbackLogging = true;
+            StartCoroutine(Corutine());
         }
 
-        private IEnumerator Start()
+        //private IEnumerator Start()
+        private IEnumerator Corutine()
         {
 #if !UNITY_WEBGL || UNITY_EDITOR
             yield break;

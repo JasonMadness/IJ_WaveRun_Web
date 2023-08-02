@@ -5,28 +5,17 @@ using UnityEngine;
 public class Advertisement : MonoBehaviour
 {
     [SerializeField] private TotalScore _totalScore;
-    public testing _testing;
-    public TMPro.TMP_Text conTest;
-
-    /*private void Start()
-    {
-        YandexGamesSdk.Initialize();
-    }*/
     
     private void Awake()
     {
         YandexGamesSdk.CallbackLogging = true;
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
-#if !UNITY_WEBGL || UNITY_EDITOR
-        yield break;
+#if !UNITY_EDITOR
+        YandexGamesSdk.Initialize();
 #endif
-
-        yield return YandexGamesSdk.Initialize();
-
-        conTest.text += " Connected";
     }
 
     public void ShowAd()
