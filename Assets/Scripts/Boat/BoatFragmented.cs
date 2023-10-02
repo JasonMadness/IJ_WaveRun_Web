@@ -6,13 +6,15 @@ public class BoatFragmented : MonoBehaviour
     [SerializeField] private float _explosionForse;
     [SerializeField] private AudioSource[] _audioSources;
 
+    private float _sphereRadiusAddition = 2f;
+
     public void Explode()
     {
         Rigidbody[] pieces = GetComponentsInChildren<Rigidbody>();
 
         foreach (Rigidbody piece in pieces)
         {
-            piece.AddForce((Vector3.up / 2 + Random.insideUnitSphere) * _explosionForse, ForceMode.Impulse);
+            piece.AddForce((Vector3.up / _sphereRadiusAddition + Random.insideUnitSphere) * _explosionForse, ForceMode.Impulse);
         }
 
         int randomIndex = Random.Range(0, _audioSources.Length);
