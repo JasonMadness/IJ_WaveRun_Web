@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Pause : MonoBehaviour
@@ -7,18 +8,19 @@ public class Pause : MonoBehaviour
     private bool _paused = false;
     private bool _buttonClicked = false;
 
-    public void PauseGame()
+    private void PauseGame()
     {
         Time.timeScale = 0;
         _audio.PauseMusic();
         _paused = true;
     }
 
-    public void UnPause()
+    private void UnPause()
     {
         Time.timeScale = 1;
         _audio.UnPauseMusic();
         _paused = false;
+        _buttonClicked = false;
     }
 
     public void OnPauseButtonClicked()
@@ -26,7 +28,6 @@ public class Pause : MonoBehaviour
         if (_paused && _buttonClicked)
         {
             UnPause();
-            _buttonClicked = false;
         }
         else
         {
@@ -44,6 +45,22 @@ public class Pause : MonoBehaviour
         else if (_buttonClicked == false)
         {
             UnPause();
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (_paused == false)
+            {
+                PauseGame();
+                _buttonClicked = true;
+            }
+            else
+            {
+                UnPause();
+            }
         }
     }
 }

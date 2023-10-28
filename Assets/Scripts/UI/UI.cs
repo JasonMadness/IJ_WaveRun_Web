@@ -1,18 +1,21 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
     [SerializeField] private MainMenu _mainMenu;
     [SerializeField] private ProgressGroup _progressGroup;
     [SerializeField] private EndScreen _endScreen;
+    [SerializeField] private Button _bonusButton;
 
     public void Initialize()
     {
         _mainMenu.gameObject.SetActive(true);
     }
 
-    public void DeactivateEndScreen()
+    public void ResetEndScreen()
     {
+        _bonusButton.gameObject.SetActive(true);
         _endScreen.gameObject.SetActive(false);
     }
     

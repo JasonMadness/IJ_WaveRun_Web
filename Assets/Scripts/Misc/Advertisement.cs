@@ -11,11 +11,12 @@ public class Advertisement : MonoBehaviour
         YandexGamesSdk.CallbackLogging = true;
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
 #if !UNITY_EDITOR
-        YandexGamesSdk.Initialize();
+        yield return YandexGamesSdk.Initialize();
 #endif
+        yield return null;
     }
 
     public void ShowAd()

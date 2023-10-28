@@ -45,7 +45,7 @@ public class Game : MonoBehaviour
     {
         _level.Create(_difficulty.Value);
         _cameraSwitcher.SetStartingPriorities();
-        _ui.DeactivateEndScreen();
+        _ui.ResetEndScreen();
         _ui.ResetProgress(_level.GetTotalPickUpsValue());
         _score.Reset(_difficulty.Value);
         _player.ResetScale();
