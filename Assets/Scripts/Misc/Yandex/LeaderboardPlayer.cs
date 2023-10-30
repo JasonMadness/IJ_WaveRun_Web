@@ -1,5 +1,3 @@
-
-
 public class LeaderboardPlayer
 {
     public LeaderboardPlayer(int rank, string name, int score)
