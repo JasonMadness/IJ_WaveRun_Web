@@ -1,26 +1,22 @@
-using Agava.YandexGames;
-using UnityEngine;
+using System.Collections.Generic;
 
-public class Leaderboard : MonoBehaviour
+public class Leaderboard
 {
-    /*private void Start()
+    public List<string> GetLeaderboardEntries()
     {
-        YandexGamesSdk.Initialize();
-    }
-
-    public void OnGetLeaderboardEntriesButtonClick()
+        List<string> names = new List<string>();
+        
+        Agava.YandexGames.Leaderboard.GetEntries("WaveRunLeaderboard", (result) =>
         {
-            Leaderboard.GetEntries("PlaytestBoard", (result) =>
+            foreach (var entry in result.entries)
             {
-                Debug.Log($"My rank = {result.userRank}");
-                foreach (var entry in result.entries)
-                {
-                    string name = entry.player.publicName;
-                    if (string.IsNullOrEmpty(name))
-                        name = "Anonymous";
-                    Debug.Log(name + " " + entry.score);
-                }
-            });
-        }*/
-    
+                string name = entry.player.publicName;
+                if (string.IsNullOrEmpty(name))
+                    name = "Anonymous";
+                names.Add(name);
+            }
+        });
+
+        return names;
+    }    
 }
