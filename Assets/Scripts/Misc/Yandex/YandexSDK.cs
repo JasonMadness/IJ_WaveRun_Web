@@ -2,7 +2,7 @@ using Agava.YandexGames;
 using System.Collections;
 using UnityEngine;
 
-public class Advertisement : MonoBehaviour
+public class YandexSDK : MonoBehaviour
 {
     [SerializeField] private TotalScore _totalScore;
     
