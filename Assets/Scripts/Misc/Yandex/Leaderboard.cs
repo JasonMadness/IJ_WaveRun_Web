@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Agava.YandexGames;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 public class Leaderboard : MonoBehaviour
@@ -33,10 +35,24 @@ public class Leaderboard : MonoBehaviour
             return;
         }
 
-        Agava.YandexGames.Leaderboard.GetEntries(LEADERBOARD_NAME, onSuccessCallback: =>
+        Agava.YandexGames.Leaderboard.GetEntries(LEADERBOARD_NAME, onSuccessCallback: result =>
         {
+            for (int i = 0; i < result.entries.Length; i++)
+            {
+                int rank = result.entries[i].rank;
+                string name = result.entries[i].player.publicName;
+                int score = result.entries[i].score;
 
-        })
+                if (String.IsNullOrEmpty(name))
+                {
+                    name = ANONYMOUS_NAME;
+                }
+
+                _leaderboardPlayers.Add(new LeaderboardPlayer(rank, name, score));
+            }
+
+            _leaderboardView.ConstructLeaderboard(_leaderboardPlayers);
+        });
     }
 
     public void OpenLeaderboard()
@@ -47,11 +63,10 @@ public class Leaderboard : MonoBehaviour
         {
             PlayerAccount.RequestPersonalProfileDataPermission();
         }
-        else
+
+        if (PlayerAccount.IsAuthorized == false)
         {
             return;
         }
-    } 
-
-
+    }
 }
