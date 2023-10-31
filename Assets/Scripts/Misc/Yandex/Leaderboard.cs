@@ -9,6 +9,7 @@ public class Leaderboard : MonoBehaviour
     private const string ANONYMOUS_NAME = "Anonymous";
     private const string LEADERBOARD_NAME = "WaveRunLeaderboard";
 
+    [SerializeField] private GameObject _leaderboard;
     [SerializeField] private LeaderboardView _leaderboardView;
 
     private readonly List<LeaderboardPlayer> _leaderboardPlayers = new();
@@ -62,6 +63,8 @@ public class Leaderboard : MonoBehaviour
         if (PlayerAccount.IsAuthorized)
         {
             PlayerAccount.RequestPersonalProfileDataPermission();
+            _leaderboard.SetActive(true);
+            Fill();
         }
 
         if (PlayerAccount.IsAuthorized == false)

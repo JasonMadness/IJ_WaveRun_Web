@@ -1,11 +1,10 @@
 using Agava.YandexGames;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class YandexSDK : MonoBehaviour
 {
-    [SerializeField] private TotalScore _totalScore;
-    
     private void Awake()
     {
         YandexGamesSdk.CallbackLogging = true;
@@ -14,19 +13,13 @@ public class YandexSDK : MonoBehaviour
     private IEnumerator Start()
     {
 #if !UNITY_EDITOR
-        yield return YandexGamesSdk.Initialize();
+        yield return YandexGamesSdk.Initialize(OnInitialized);
 #endif
         yield return null;
     }
 
-    public void ShowAd()
+    private void OnInitialized()
     {
-        VideoAd.Show(onRewardedCallback: Reward);
-    }
-
-    private void Reward()
-    {
-        int bonusScore = _totalScore.BonusValue * 5;
-        _totalScore.StartIncreasing(bonusScore);
+        SceneManager.LoadScene(1);
     }
 }
