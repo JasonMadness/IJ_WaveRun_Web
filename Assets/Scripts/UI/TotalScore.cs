@@ -7,14 +7,12 @@ public class TotalScore : MonoBehaviour
     [SerializeField] private Leaderboard _leaderboard;
     [SerializeField] private TMP_Text _text;
 
-    private const string SCORE = "Score";
-
     private IO_Score _io = new IO_Score();
     
     private int _score;
     private int _additionValue;
     private float _delayBeforeCalculations = 1.0f;
-    private float _calculationTime = 1.0f;
+    private float _calculationTime = 0.8f;
 
     public int BonusValue;
 

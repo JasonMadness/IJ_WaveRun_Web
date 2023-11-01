@@ -71,4 +71,14 @@ public class Leaderboard : MonoBehaviour
             return;
         }
     }
+
+    public void Autorize()
+    {
+        PlayerAccount.Authorize(); 
+
+        if (PlayerAccount.IsAuthorized)
+        {
+            PlayerAccount.RequestPersonalProfileDataPermission();
+        }
+    }
 }
