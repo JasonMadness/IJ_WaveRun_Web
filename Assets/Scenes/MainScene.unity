@@ -1373,7 +1373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &61274066
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17727,7 +17727,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:1947596ce9caeda4c9fa25a31b1de5ff
     m_TableEntryReference:
-      m_KeyId: 1422531793559552
+      m_KeyId: 57601395745660928
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -33714,7 +33714,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2091901463}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -152,6 +152,10 @@ MonoBehaviour:
     m_Localized: LEADERBOARD
     m_Metadata:
       m_Items: []
+  - m_Id: 57601395745660928
+    m_Localized: "LANGUAGE\t"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

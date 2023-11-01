@@ -60,7 +60,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1422531793559552
-    m_Key: Settings_Label
+    m_Key: Leaderboard_Label
     m_Metadata:
       m_Items: []
   - m_Id: 1423789925376000
@@ -145,6 +145,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 12316218568253440
     m_Key: LeaderBoard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57601395745660928
+    m_Key: Language_label
     m_Metadata:
       m_Items: []
   m_Metadata:
