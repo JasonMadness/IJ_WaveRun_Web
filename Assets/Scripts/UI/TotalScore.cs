@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TotalScore : MonoBehaviour
 {
+    [SerializeField] private Leaderboard _leaderboard;
     [SerializeField] private TMP_Text _text;
 
     private const string SCORE = "Score";
@@ -26,6 +27,7 @@ public class TotalScore : MonoBehaviour
     public void StartIncreasing(int value)
     {
         _io.Save(_score + value);
+        _leaderboard.SetPlayer(_score + value);
         StartCoroutine(Increase(value));
     }
 
