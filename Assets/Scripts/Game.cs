@@ -62,7 +62,7 @@ public class Game : MonoBehaviour
             pickUp.PickedUp += _ui.OnPickedUp;
             pickUp.PickedUp += _score.OnPickedUp;
             pickUp.PickedUp += _audio.OnPickedUp;
-        }            
+        }
 
         foreach (Boat boat in boats)
         {
@@ -83,7 +83,7 @@ public class Game : MonoBehaviour
             pickUp.PickedUp -= _ui.OnPickedUp;
             pickUp.PickedUp -= _score.OnPickedUp;
             pickUp.PickedUp -= _audio.OnPickedUp;
-        }            
+        }
 
         foreach (Boat boat in boats)
         {

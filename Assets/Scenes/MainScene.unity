@@ -21464,7 +21464,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 517572196}
         m_TargetAssemblyTypeName: Leaderboard, Assembly-CSharp
-        m_MethodName: Autorize
+        m_MethodName: Authorize
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
