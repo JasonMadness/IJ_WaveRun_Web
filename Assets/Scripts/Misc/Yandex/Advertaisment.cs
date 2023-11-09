@@ -7,12 +7,20 @@ public class Advertaisment : MonoBehaviour
 
     public void ShowAd()
     {
-        VideoAd.Show(onRewardedCallback: Reward);
+        Time.timeScale = 0;
+        AudioListener.volume = 0;
+        VideoAd.Show(onRewardedCallback: Reward, onCloseCallback: Close);
     }
 
     private void Reward()
     {
         int bonusScore = _totalScore.BonusValue * 5;
         _totalScore.StartIncreasing(bonusScore);
+    }
+
+    private void Close()
+    {
+        Time.timeScale = 1;
+        AudioListener.volume = 1;
     }
 }

@@ -16,9 +16,4 @@ public class IO_Score
         else
             score = 0;
     }
-
-    public void Reset()
-    {
-        PlayerPrefs.SetInt(SCORE, 0);
-    }
 }

@@ -11,9 +11,12 @@ namespace Misc.Yandex
         private const string LEADERBOARD_NAME = "WaveRunLeaderboard";
 
         [SerializeField] private GameObject _leaderboard;
+        [SerializeField] private TotalScore _totalScore;
         [SerializeField] private LeaderboardView _leaderboardView;
+        [SerializeField] private LeadeboardList _leaderboardList;
 
-        private readonly List<LeaderboardPlayer> _leaderboardPlayers = new();
+        private List<LeaderboardPlayer> _leaderboardPlayers = new();
+        private LeaderboardPlayer _player;
 
         private int _savedScore = 0;
 
@@ -28,24 +31,34 @@ namespace Misc.Yandex
                 result => { Agava.YandexGames.Leaderboard.SetScore(LEADERBOARD_NAME, score); });
         }
 
-        public int GetPlayerScore()
+        public void GetPlayer()
         {
-            Agava.YandexGames.Leaderboard.GetPlayerEntry(LEADERBOARD_NAME, result => _savedScore = result.score);
-            return _savedScore;
+            Agava.YandexGames.Leaderboard.GetPlayerEntry(LEADERBOARD_NAME, result =>
+            {
+                int rank = result.rank;
+                string name = result.player.publicName;
+                _savedScore = result.score;
+                _totalScore.SetScore(_savedScore);
+                _player = new LeaderboardPlayer(rank, name, _savedScore);
+            });
         }
 
         private void Fill()
         {
             _leaderboardPlayers.Clear();
-
-            if (PlayerAccount.IsAuthorized == false)
-            {
-                return;
-            }
+            GetPlayer();
 
             Agava.YandexGames.Leaderboard.GetEntries(LEADERBOARD_NAME, onSuccessCallback: result =>
             {
-                for (int i = 0; i < result.entries.Length; i++)
+                _leaderboardPlayers.Clear();
+                int maxIndex = 3;
+
+                if (result.entries.Length < 3)
+                {
+                    maxIndex = result.entries.Length;
+                }
+
+                for (int i = 0; i < maxIndex; i++)
                 {
                     int rank = result.entries[i].rank;
                     string publicName = result.entries[i].player.publicName;
@@ -58,26 +71,23 @@ namespace Misc.Yandex
 
                     _leaderboardPlayers.Add(new LeaderboardPlayer(rank, publicName, score));
                 }
-
-                _leaderboardView.ConstructLeaderboard(_leaderboardPlayers);
+                
+                _leaderboardList.ConstructLeaderboard(_leaderboardPlayers, _player);
+                //_leaderboardView.ConstructLeaderboard(_leaderboardPlayers);
             });
         }
 
         public void OpenLeaderboard()
         {
-            PlayerAccount.Authorize();
-
-            if (PlayerAccount.IsAuthorized)
-            {
-                PlayerAccount.RequestPersonalProfileDataPermission();
-                _leaderboard.SetActive(true);
-                Fill();
-            }
-
             if (PlayerAccount.IsAuthorized == false)
             {
+                PlayerAccount.Authorize();
                 return;
             }
+
+            PlayerAccount.RequestPersonalProfileDataPermission();
+            _leaderboard.SetActive(true);
+            Fill();
         }
     }
 }

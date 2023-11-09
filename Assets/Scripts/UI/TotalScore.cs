@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Misc.Yandex;
 using TMPro;
@@ -7,8 +8,6 @@ public class TotalScore : MonoBehaviour
 {
     [SerializeField] private Leaderboard _leaderboard;
     [SerializeField] private TMP_Text _text;
-
-    private IO_Score _io = new IO_Score();
     
     private int _score;
     private int _additionValue;
@@ -17,15 +16,13 @@ public class TotalScore : MonoBehaviour
 
     public int BonusValue;
 
-    private void OnEnable()
+    public void SetScore(int score)
     {
-        _io.Load(out _score);          
-        UpdateUI();
+        _score = score;
     }
-
+    
     public void StartIncreasing(int value)
     {
-        _io.Save(_score + value);
         _leaderboard.SetPlayer(_score + value);
         StartCoroutine(Increase(value));
     }
