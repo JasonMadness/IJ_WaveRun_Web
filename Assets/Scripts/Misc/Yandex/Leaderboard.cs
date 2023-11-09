@@ -15,6 +15,8 @@ namespace Misc.Yandex
 
         private readonly List<LeaderboardPlayer> _leaderboardPlayers = new();
 
+        private int _savedScore = 0;
+
         public void SetPlayer(int score)
         {
             if (PlayerAccount.IsAuthorized == false)
@@ -23,7 +25,13 @@ namespace Misc.Yandex
             }
 
             Agava.YandexGames.Leaderboard.GetPlayerEntry(LEADERBOARD_NAME,
-                _ => { Agava.YandexGames.Leaderboard.SetScore(LEADERBOARD_NAME, score); });
+                result => { Agava.YandexGames.Leaderboard.SetScore(LEADERBOARD_NAME, score); });
+        }
+
+        public int GetPlayerScore()
+        {
+            Agava.YandexGames.Leaderboard.GetPlayerEntry(LEADERBOARD_NAME, result => _savedScore = result.score);
+            return _savedScore;
         }
 
         private void Fill()
@@ -69,16 +77,6 @@ namespace Misc.Yandex
             if (PlayerAccount.IsAuthorized == false)
             {
                 return;
-            }
-        }
-
-        public void AuthorizePlayer()
-        {
-            PlayerAccount.Authorize();
-
-            if (PlayerAccount.IsAuthorized)
-            {
-                PlayerAccount.RequestPersonalProfileDataPermission();
             }
         }
     }
