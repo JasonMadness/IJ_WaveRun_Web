@@ -8,21 +8,27 @@ public class TotalScore : MonoBehaviour
 {
     [SerializeField] private Leaderboard _leaderboard;
     [SerializeField] private TMP_Text _text;
-    
+
     private int _score;
     private int _additionValue;
     private float _delayBeforeCalculations = 1.0f;
     private float _calculationTime = 0.8f;
 
-    public int BonusValue;
+    private int _bonusValue;
+    public int BonusValue => _bonusValue;
 
     public void SetScore(int score)
     {
-        _score = score;
+        if (_score < score)
+        {
+            _score = score;
+        }
     }
-    
+
     public void StartIncreasing(int value)
     {
+        Debug.Log("Current score: " + _score);
+        Debug.Log("Additional score: " + value);
         _leaderboard.SetPlayer(_score + value);
         StartCoroutine(Increase(value));
     }
@@ -30,7 +36,7 @@ public class TotalScore : MonoBehaviour
     private IEnumerator Increase(int value)
     {
         _additionValue = value;
-        BonusValue = value;
+        _bonusValue = value;
         UpdateUI();
         yield return new WaitForSeconds(_delayBeforeCalculations);
         WaitForSeconds delay = new WaitForSeconds(_calculationTime / _additionValue);
@@ -52,6 +58,6 @@ public class TotalScore : MonoBehaviour
                 _text.text = $"{_score} + <color=green>{_additionValue}</color>";
             else
                 _text.text = _score.ToString();
-        }        
+        }
     }
 }

@@ -33,6 +33,8 @@ namespace Misc.Yandex
 
         public void GetPlayer()
         {
+            Debug.Log("Start method GetPlayer");
+            Debug.Log(System.DateTime.Now);
             Agava.YandexGames.Leaderboard.GetPlayerEntry(LEADERBOARD_NAME, result =>
             {
                 int rank = result.rank;
@@ -40,11 +42,17 @@ namespace Misc.Yandex
                 _savedScore = result.score;
                 _totalScore.SetScore(_savedScore);
                 _player = new LeaderboardPlayer(rank, name, _savedScore);
+                Debug.Log("End lambda func");
+                Debug.Log(System.DateTime.Now);
             });
+            Debug.Log("End method GetPlayer");
+            Debug.Log(System.DateTime.Now);
         }
 
         private void Fill()
         {
+            Debug.Log("Start method FillLeaderboadr");
+            Debug.Log(System.DateTime.Now);
             _leaderboardPlayers.Clear();
             GetPlayer();
 
@@ -75,10 +83,14 @@ namespace Misc.Yandex
                 _leaderboardList.ConstructLeaderboard(_leaderboardPlayers, _player);
                 //_leaderboardView.ConstructLeaderboard(_leaderboardPlayers);
             });
+            Debug.Log("End method FillLeaderboadr");
+            Debug.Log(System.DateTime.Now);
         }
 
         public void OpenLeaderboard()
         {
+            Debug.Log("Start method OpenLeaderboard");
+            Debug.Log(System.DateTime.Now);
             if (PlayerAccount.IsAuthorized == false)
             {
                 PlayerAccount.Authorize();
@@ -88,6 +100,8 @@ namespace Misc.Yandex
             PlayerAccount.RequestPersonalProfileDataPermission();
             _leaderboard.SetActive(true);
             Fill();
+            Debug.Log("End method OpenLeaderboard");
+            Debug.Log(System.DateTime.Now);
         }
     }
 }

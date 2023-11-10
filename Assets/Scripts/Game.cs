@@ -69,10 +69,10 @@ public class Game : MonoBehaviour
             boat.Destroyed += _score.OnBoatDestroyed;
         }
 
-        foreach (Boat finishBoat in finishBoats)
+        /*foreach (Boat finishBoat in finishBoats)
         {
             finishBoat.GetComponent<FinishBonus>().Destroyed += _score.OnBonusBoatDestroyed;
-        }
+        }*/
     }
 
     private void OnLevelDeleted(List<PickUp> pickUps, List<Boat> boats)
