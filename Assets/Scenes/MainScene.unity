@@ -12218,7 +12218,7 @@ MonoBehaviour:
   _level: {fileID: 1492092576}
   _difficulty: {fileID: 819154949}
   _cameraSwitcher: {fileID: 1276131189}
-  _score: {fileID: 150224333}
+  _levelScore: {fileID: 150224333}
   _totalScore: {fileID: 1097962256}
   _ui: {fileID: 2008306130}
   _audio: {fileID: 1622663724}
@@ -17093,7 +17093,6 @@ GameObject:
   - component: {fileID: 1097962252}
   - component: {fileID: 1097962255}
   - component: {fileID: 1097962254}
-  - component: {fileID: 1097962253}
   - component: {fileID: 1097962256}
   m_Layer: 5
   m_Name: Score
@@ -17124,21 +17123,6 @@ RectTransform:
   m_AnchoredPosition: {x: 625, y: -150}
   m_SizeDelta: {x: 400, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1097962253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1097962251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2681202412732234b865d69e0946ecd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _drops: {fileID: 261927719}
-  _boats: {fileID: 1915162913}
-  _score: {fileID: 1615567295}
 --- !u!114 &1097962254
 MonoBehaviour:
   m_ObjectHideFlags: 0

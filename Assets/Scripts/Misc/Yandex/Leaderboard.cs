@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Agava.YandexGames;
 using UnityEngine;
@@ -19,6 +20,9 @@ namespace Misc.Yandex
         private LeaderboardPlayer _player;
 
         private int _savedScore = 0;
+        private float _counter = 5;
+
+        public int SavedScore;
 
         public void SetPlayer(int score)
         {
@@ -31,7 +35,7 @@ namespace Misc.Yandex
                 result => { Agava.YandexGames.Leaderboard.SetScore(LEADERBOARD_NAME, score); });
         }
 
-        public void GetPlayer()
+        private void GetPlayer()
         {
             Debug.Log("Start method GetPlayer");
             Debug.Log(System.DateTime.Now);
@@ -83,8 +87,6 @@ namespace Misc.Yandex
                 _leaderboardList.ConstructLeaderboard(_leaderboardPlayers, _player);
                 //_leaderboardView.ConstructLeaderboard(_leaderboardPlayers);
             });
-            Debug.Log("End method FillLeaderboadr");
-            Debug.Log(System.DateTime.Now);
         }
 
         public void OpenLeaderboard()
@@ -98,10 +100,22 @@ namespace Misc.Yandex
             }
 
             PlayerAccount.RequestPersonalProfileDataPermission();
-            _leaderboard.SetActive(true);
             Fill();
-            Debug.Log("End method OpenLeaderboard");
+            _leaderboard.SetActive(true);
+            Debug.Log("End method OpenLeaderboard"); 
             Debug.Log(System.DateTime.Now);
+        }
+
+        private void Update()
+        {
+            _counter -= Time.deltaTime;
+
+            if (_counter <= 0)
+            {
+                _counter = 5;
+                GetPlayer();
+                SavedScore = _savedScore;
+            }
         }
     }
 }

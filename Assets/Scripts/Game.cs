@@ -1,6 +1,7 @@
 using PathCreation;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Game : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Game : MonoBehaviour
     [SerializeField] private Level _level;
     [SerializeField] private Difficulty _difficulty;
     [SerializeField] private CameraSwitcher _cameraSwitcher;
-    [SerializeField] private Score _score;
+    [SerializeField] private LevelScore _levelScore;
     [SerializeField] private TotalScore _totalScore;
     [SerializeField] private UI _ui;
     [SerializeField] private Audio _audio;
@@ -47,7 +48,7 @@ public class Game : MonoBehaviour
         _cameraSwitcher.SetStartingPriorities();
         _ui.ResetEndScreen();
         _ui.ResetProgress(_level.GetTotalPickUpsValue());
-        _score.Reset(_difficulty.Value);
+        _levelScore.Reset(_difficulty.Value);
         _player.ResetScale();
         _startingTimer.Initialize();
     }
@@ -60,19 +61,14 @@ public class Game : MonoBehaviour
         {
             pickUp.PickedUp += _player.OnPickedUp;
             pickUp.PickedUp += _ui.OnPickedUp;
-            pickUp.PickedUp += _score.OnPickedUp;
+            pickUp.PickedUp += _levelScore.OnPickedUp;
             pickUp.PickedUp += _audio.OnPickedUp;
         }
 
         foreach (Boat boat in boats)
         {
-            boat.Destroyed += _score.OnBoatDestroyed;
+            boat.Destroyed += _levelScore.OnBoatDestroyed;
         }
-
-        /*foreach (Boat finishBoat in finishBoats)
-        {
-            finishBoat.GetComponent<FinishBonus>().Destroyed += _score.OnBonusBoatDestroyed;
-        }*/
     }
 
     private void OnLevelDeleted(List<PickUp> pickUps, List<Boat> boats)
@@ -81,13 +77,13 @@ public class Game : MonoBehaviour
         {
             pickUp.PickedUp -= _player.OnPickedUp;
             pickUp.PickedUp -= _ui.OnPickedUp;
-            pickUp.PickedUp -= _score.OnPickedUp;
+            pickUp.PickedUp -= _levelScore.OnPickedUp;
             pickUp.PickedUp -= _audio.OnPickedUp;
         }
 
         foreach (Boat boat in boats)
         {
-            boat.Destroyed -= _score.OnBoatDestroyed;
+            boat.Destroyed -= _levelScore.OnBoatDestroyed;
         }
     }
 
@@ -105,6 +101,6 @@ public class Game : MonoBehaviour
 
     private void OnGameEnded()
     {
-        _totalScore.StartIncreasing(_score.LevelScore);
+        _totalScore.StartIncreasing(_levelScore.Score);
     }
 }

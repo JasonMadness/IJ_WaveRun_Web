@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class Score : MonoBehaviour
+public class LevelScore : MonoBehaviour
 {
     [SerializeField] private TMP_Text _drops;
     [SerializeField] private TMP_Text _boats;
@@ -13,7 +13,7 @@ public class Score : MonoBehaviour
     private int _difficulty;
     private int _bonusCoefficient;
 
-    public int LevelScore => _levelScore;
+    public int Score => _levelScore;
 
     public void Reset(int difficulty)
     {

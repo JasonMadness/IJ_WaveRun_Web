@@ -17,6 +17,8 @@ public class TotalScore : MonoBehaviour
     private int _bonusValue;
     public int BonusValue => _bonusValue;
 
+    private float _counter = 5;
+
     public void SetScore(int score)
     {
         if (_score < score)
@@ -37,6 +39,7 @@ public class TotalScore : MonoBehaviour
     {
         _additionValue = value;
         _bonusValue = value;
+        OnBonusValueChange();
         UpdateUI();
         yield return new WaitForSeconds(_delayBeforeCalculations);
         WaitForSeconds delay = new WaitForSeconds(_calculationTime / _additionValue);
@@ -50,6 +53,11 @@ public class TotalScore : MonoBehaviour
         }
     }
 
+    private void OnBonusValueChange()
+    {
+        Debug.Log("Bonus value changed to: " + _bonusValue);
+    }
+
     private void UpdateUI()
     {
         if (_text.gameObject.activeSelf)
@@ -58,6 +66,17 @@ public class TotalScore : MonoBehaviour
                 _text.text = $"{_score} + <color=green>{_additionValue}</color>";
             else
                 _text.text = _score.ToString();
+        }
+    }
+
+    private void Update()
+    {
+        _counter -= Time.deltaTime;
+
+        if (_counter <= 0)
+        {
+            _counter = 5;
+            SetScore(_leaderboard.SavedScore);
         }
     }
 }

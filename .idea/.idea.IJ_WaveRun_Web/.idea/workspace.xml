@@ -6,10 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="e311a2ec-52e4-43be-a1a7-a6595ab1b750" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IJ_WaveRun_Web/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IJ_WaveRun_Web/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/link.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/link.xml.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/Yandex/Advertaisment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/Yandex/Advertaisment.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/Yandex/Leaderboard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/Yandex/Leaderboard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Score.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/LevelScore.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Score.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/LevelScore.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/TotalScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/TotalScore.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -148,6 +151,7 @@
       <workItem from="1699501621911" duration="1700000" />
       <workItem from="1699547496344" duration="6132000" />
       <workItem from="1699586935361" duration="2671000" />
+      <workItem from="1699972721477" duration="2815000" />
     </task>
     <servers />
   </component>
