@@ -20,9 +20,10 @@ namespace Misc.Yandex
         private LeaderboardPlayer _player;
 
         private int _savedScore = 0;
-        private float _counter = 5;
 
         public int SavedScore;
+
+        public event Action<int> PlayerScoreGet; 
 
         public void SetPlayer(int score)
         {
@@ -37,8 +38,6 @@ namespace Misc.Yandex
 
         private void GetPlayer()
         {
-            Debug.Log("Start method GetPlayer");
-            Debug.Log(System.DateTime.Now);
             Agava.YandexGames.Leaderboard.GetPlayerEntry(LEADERBOARD_NAME, result =>
             {
                 int rank = result.rank;
@@ -46,17 +45,14 @@ namespace Misc.Yandex
                 _savedScore = result.score;
                 _totalScore.SetScore(_savedScore);
                 _player = new LeaderboardPlayer(rank, name, _savedScore);
-                Debug.Log("End lambda func");
-                Debug.Log(System.DateTime.Now);
+                PlayerScoreGet?.Invoke(_savedScore);
+                Debug.Log("Action GetPlayerScore Invoked. Score getted: " + _savedScore);
+                Debug.Log("Total score now: " + _totalScore.TotalScoreScore);
             });
-            Debug.Log("End method GetPlayer");
-            Debug.Log(System.DateTime.Now);
         }
 
         private void Fill()
         {
-            Debug.Log("Start method FillLeaderboadr");
-            Debug.Log(System.DateTime.Now);
             _leaderboardPlayers.Clear();
             GetPlayer();
 
@@ -91,8 +87,6 @@ namespace Misc.Yandex
 
         public void OpenLeaderboard()
         {
-            Debug.Log("Start method OpenLeaderboard");
-            Debug.Log(System.DateTime.Now);
             if (PlayerAccount.IsAuthorized == false)
             {
                 PlayerAccount.Authorize();
@@ -102,20 +96,6 @@ namespace Misc.Yandex
             PlayerAccount.RequestPersonalProfileDataPermission();
             Fill();
             _leaderboard.SetActive(true);
-            Debug.Log("End method OpenLeaderboard"); 
-            Debug.Log(System.DateTime.Now);
-        }
-
-        private void Update()
-        {
-            _counter -= Time.deltaTime;
-
-            if (_counter <= 0)
-            {
-                _counter = 5;
-                GetPlayer();
-                SavedScore = _savedScore;
-            }
         }
     }
 }

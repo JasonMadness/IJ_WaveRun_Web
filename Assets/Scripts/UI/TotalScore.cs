@@ -16,11 +16,27 @@ public class TotalScore : MonoBehaviour
 
     private int _bonusValue;
     public int BonusValue => _bonusValue;
+    public int TotalScoreScore => _score;
 
-    private float _counter = 5;
+    private float cntdwn = 5f;
+
+    private void Start()
+    {
+        _leaderboard.PlayerScoreGet += OnPlayerScoreGet;
+    }
+
+    private void OnPlayerScoreGet(int score)
+    {
+        SetScore(score);
+        Debug.Log(score);
+    }
 
     public void SetScore(int score)
     {
+        Debug.Log("Method 'Set Score' in class 'Total Score'");
+        Debug.Log("Current score: " + _score);
+        Debug.Log("DI score: " + score);
+        Debug.Log("if " + _score + "<" + score);
         if (_score < score)
         {
             _score = score;
@@ -71,12 +87,11 @@ public class TotalScore : MonoBehaviour
 
     private void Update()
     {
-        _counter -= Time.deltaTime;
-
-        if (_counter <= 0)
+        cntdwn -= Time.deltaTime;
+        if (cntdwn < 0)
         {
-            _counter = 5;
-            SetScore(_leaderboard.SavedScore);
+            Debug.Log("Countdown ended. TotalScore is: " + _score);
+            cntdwn = 5f;
         }
     }
 }
