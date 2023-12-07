@@ -11,7 +11,6 @@ public class LevelScore : MonoBehaviour
     private int _boatsCount;
     private int _levelScore;
     private int _difficulty;
-    private int _bonusCoefficient;
 
     public int Score => _levelScore;
 
@@ -19,31 +18,25 @@ public class LevelScore : MonoBehaviour
     {
         _dropsCount = 0;
         _boatsCount = 0;
-        _bonusCoefficient = 0;
         _difficulty = difficulty;
-        SetScore();
+        UpdateUI();
     }
 
     public void OnPickedUp(PickUp pickUp)
     {
         pickUp.PickedUp -= OnPickedUp;
         _dropsCount++;
-        SetScore();
+        UpdateUI();
     }
 
     public void OnBoatDestroyed(Boat boat)
     {
         boat.Destroyed -= OnBoatDestroyed;
         _boatsCount++;
-        SetScore();
+        UpdateUI();
     }
 
-    public void OnBonusBoatDestroyed()
-    {
-        _bonusCoefficient++;
-    }
-
-    private void SetScore()
+    private void UpdateUI()
     {
         _drops.text = _dropsCount.ToString();
         _boats.text = _boatsCount.ToString();

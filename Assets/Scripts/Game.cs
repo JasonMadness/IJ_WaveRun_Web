@@ -10,7 +10,7 @@ public class Game : MonoBehaviour
     [SerializeField] private Difficulty _difficulty;
     [SerializeField] private CameraSwitcher _cameraSwitcher;
     [SerializeField] private LevelScore _levelScore;
-    [SerializeField] private TotalScore _totalScore;
+    [SerializeField] private Score _score;
     [SerializeField] private UI _ui;
     [SerializeField] private Audio _audio;
     [SerializeField] private Timer _startingTimer;
@@ -101,6 +101,6 @@ public class Game : MonoBehaviour
 
     private void OnGameEnded()
     {
-        _totalScore.StartIncreasing(_levelScore.Score);
+        _score.StartEnding();
     }
 }

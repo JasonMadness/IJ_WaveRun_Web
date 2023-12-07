@@ -12,16 +12,12 @@ namespace Misc.Yandex
         private const string LEADERBOARD_NAME = "WaveRunLeaderboard";
 
         [SerializeField] private GameObject _leaderboard;
-        [SerializeField] private TotalScore _totalScore;
-        [SerializeField] private LeaderboardView _leaderboardView;
         [SerializeField] private LeadeboardList _leaderboardList;
 
         private List<LeaderboardPlayer> _leaderboardPlayers = new();
         private LeaderboardPlayer _player;
 
         private int _savedScore = 0;
-
-        public int SavedScore;
 
         public event Action<int> PlayerScoreGet; 
 
@@ -38,16 +34,18 @@ namespace Misc.Yandex
 
         private void GetPlayer()
         {
+            if (PlayerAccount.IsAuthorized == false)
+            {
+                return;
+            }
+            
             Agava.YandexGames.Leaderboard.GetPlayerEntry(LEADERBOARD_NAME, result =>
             {
                 int rank = result.rank;
                 string name = result.player.publicName;
                 _savedScore = result.score;
-                _totalScore.SetScore(_savedScore);
                 _player = new LeaderboardPlayer(rank, name, _savedScore);
                 PlayerScoreGet?.Invoke(_savedScore);
-                Debug.Log("Action GetPlayerScore Invoked. Score getted: " + _savedScore);
-                Debug.Log("Total score now: " + _totalScore.TotalScoreScore);
             });
         }
 
@@ -81,7 +79,6 @@ namespace Misc.Yandex
                 }
                 
                 _leaderboardList.ConstructLeaderboard(_leaderboardPlayers, _player);
-                //_leaderboardView.ConstructLeaderboard(_leaderboardPlayers);
             });
         }
 
