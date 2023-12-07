@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using PathCreation;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,6 +38,7 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
+        YandexGamesSdk.GameReady();
         _ui.Initialize();
         _audio.PlayMainMenuTheme();
     }

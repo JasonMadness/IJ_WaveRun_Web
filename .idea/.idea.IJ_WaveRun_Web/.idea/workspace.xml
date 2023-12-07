@@ -6,14 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="e311a2ec-52e4-43be-a1a7-a6595ab1b750" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IJ_WaveRun_Web/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IJ_WaveRun_Web/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/link.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/link.xml.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Ya_SDK_Init_Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Ya_SDK_Init_Scene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/Finish.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/Finish.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/Level.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/Yandex/Leaderboard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/Yandex/Leaderboard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Score/EndingScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Score/EndingScore.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Score/LevelScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Score/LevelScore.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/Pause.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/Pause.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/Yandex/Advertaisment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/Yandex/Advertaisment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +23,9 @@
     <setting file="file://$PROJECT_DIR$/Assets/Samples/Yandex Games/13.0.0/Playtesting Sample/PlaytestingCanvas.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Game.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/Audio.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/MuteButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/PauseAgava.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/Yandex/LanguageCodeGetter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/Yandex/LeadeboardList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PickUp/PickUpSpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Score/Score.cs" root0="FORCE_HIGHLIGHTING" />
@@ -154,6 +156,7 @@
       <workItem from="1700318769472" duration="5140000" />
       <workItem from="1701535592851" duration="2195000" />
       <workItem from="1701958561569" duration="4019000" />
+      <workItem from="1701965946791" duration="3310000" />
     </task>
     <servers />
   </component>
